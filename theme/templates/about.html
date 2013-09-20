@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="About">
+<div class="pbody">
+
+	<span class="margin">
+		My other links: <br />
+		... <script>mail2("tokestermw", "gmail", 0, "", "email")</script> <br />
+		... <a href="https://plus.google.com/104805673826709213835?rel=author">Google Plus</a> <br />
+		... <a href="https://github.com/tokestermw">GitHub</a> <br />
+		... <a href="http://www.linkedin.com/pub/motoki-wu/64/b96/b11">LinkedIn</a> <br />		
+	</span>
+
+	<div id="d3">
+
+	</div>
+
+
+<p>
+
+
+
+Hi I'm <b style="color:darkgreen">Motoki Wu</b>. I'm originally trained in statistics and ecological modeling back when WinBUGS was a thing. I stumbled through <a href="http://climb.ucdavis.edu/">CLIMB</a>, <a href="http://depts.washington.edu/qerm/">QERM</a> and I'm now at <a href="http://zipfianacademy.com/">Zipfian</a>. Trying to <a href="http://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/">go sexy</a> with my data skills. 
+ 
+</p>
+
+<p>
+	I'm currently focused on learning new techniques to efficiently do text processing, parallel and cloud computing, data visualization, data management and general programming. I have a few small projects up my sleeve and working to get solid on machine learning theory.	
+</p>
+
+<p>
+	Above is a visualization in <a href="http://d3js.org/">d3</a>. It's supposed to animate pdf averaging but obviously not there yet.
+</p>
+
+	{% include 'index_d3.html' %}
+
+</div>
+
+</section>
+
+
+{% endblock content %}

@@ -1,162 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Shrunken Master</title><link href="http://tokestermw.github.io/" rel="alternate"></link><link href="http://tokestermw.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://tokestermw.github.io/</id><updated>2013-04-10T00:00:00-07:00</updated><entry><title>My second article</title><link href="http://tokestermw.github.io/posts/my-second-article.html" rel="alternate"></link><updated>2013-04-10T00:00:00-07:00</updated><author><name>Motoki Wu</name></author><id>tag:tokestermw.github.io,2013-04-10:posts/my-second-article.html</id><summary type="html">&lt;p&gt;This is the content of my super blog post.&lt;/p&gt;
-&lt;p&gt;$$
-z = \sum_{k=1}^{|{\cal N}l|} \alpha{k}e^{-\frac{\left\| (x,y) - \mu_k(x,y) \right\|^2}{2{\sigma_k(x,y)^2} } }
-$$&lt;/p&gt;
-&lt;p&gt;&lt;span class="margin"&gt;this is some margin&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;library(rjson)&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# still need varying lags&lt;/span&gt;
-&lt;span class="c1"&gt;## base delay diff operating model&lt;/span&gt;
-opmodel &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;pars&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; E&lt;span class="p"&gt;,&lt;/span&gt; L&lt;span class="p"&gt;,&lt;/span&gt; phi0&lt;span class="p"&gt;,&lt;/span&gt; errR &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; errI &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; errN &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  beta &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;beta        &lt;span class="c1"&gt;# transformed steepness&lt;/span&gt;
-  mu &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;mu          &lt;span class="c1"&gt;# mean of transformed steepness&lt;/span&gt;
-  tau &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;tau         &lt;span class="c1"&gt;# sd of transformed steepness&lt;/span&gt;
-  B0 &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;B0          &lt;span class="c1"&gt;# unfished biomass&lt;/span&gt;
-  p &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;p           &lt;span class="c1"&gt;# growth coefficient&lt;/span&gt;
-  w &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;w           &lt;span class="c1"&gt;# w_k-1 / w_k&lt;/span&gt;
-  M &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;M           &lt;span class="c1"&gt;# natural mortality&lt;/span&gt;
-  sigR &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;sigR        &lt;span class="c1"&gt;# recruitment deviations&lt;/span&gt;
-  qI &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;qI          &lt;span class="c1"&gt;# prop coeff for abundance&lt;/span&gt;
-  sigI &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;sigI       &lt;span class="c1"&gt;# biomass observation errors&lt;/span&gt;
-  sigN &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;sigN       &lt;span class="c1"&gt;# recruitment observation errors&lt;/span&gt;
-  qN &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;qN         &lt;span class="c1"&gt;# prop coeff for recruitment&lt;/span&gt;
-  q &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;q          &lt;span class="c1"&gt;# catchability?&lt;/span&gt;
-  phiT &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; pars&lt;span class="p"&gt;$&lt;/span&gt;phiT     &lt;span class="c1"&gt;# autocorrelation on rec-devs&lt;/span&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Shrunken Master</title><link href="http://tokestermw.github.io/" rel="alternate"></link><link href="http://tokestermw.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://tokestermw.github.io/</id><updated>2013-08-03T00:00:00-07:00</updated><entry><title>Data science bootcamp links</title><link href="http://tokestermw.github.io/posts/data-science-bootcamp-links.html" rel="alternate"></link><updated>2013-08-03T00:00:00-07:00</updated><author><name>Motoki Wu</name></author><id>tag:tokestermw.github.io,2013-08-03:posts/data-science-bootcamp-links.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Last updated: 2013-08-24&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here is a list of data science bootcamps. I've only listed programs where they fully prepare you for a well-rounded understanding of data science. It should include collaborative programming, mentorship by experienced professionals, work on independent projects and possibly networking with employers. For supplementary education, you can go check out &lt;a href="http://www.eventbrite.com/directory/?q=data+science&amp;amp;loc=San+Jose-Sunnyvale-Santa+Clara%2C+CA&amp;amp;slat=37.39&amp;amp;slng=-121.96&amp;amp;spellcheck=1"&gt;EventBrite&lt;/a&gt;, &lt;a href="https://www.coursera.org/course/datasci"&gt;Coursera&lt;/a&gt;, &lt;a href="http://www.bigdatauniversity.com/"&gt;Big Data University&lt;/a&gt;,  &lt;a href="http://university.cloudera.com/"&gt;Cloudera University&lt;/a&gt;, &lt;a href="http://www-03.ibm.com/press/us/en/pressrelease/41733.wss"&gt;IBM&lt;/a&gt;, &lt;a href="https://education.emc.com/guest/campaign/data_science.aspx"&gt;the EMC series&lt;/a&gt;, &lt;a href="http://whatsthebigdata.com/2012/08/09/graduate-programs-in-big-data-and-data-science/"&gt;graduate programs&lt;/a&gt;, etc.&lt;/p&gt;
+&lt;p&gt;If you're interested in more of the traditional (read: software engineer) bootcamps, you could see &lt;a href="http://www.quora.com/Computer-Programming/What-are-the-best-programming-bootcamps-courses-available-in-the-United-States"&gt;this Quora thread&lt;/a&gt; or &lt;a href="http://bootcamper.io"&gt;BootCamper&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Please let me know if there are others.&lt;/p&gt;
+&lt;h2&gt;The Bootcamps&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://zipfianacademy.com"&gt;Zipfian Academy&lt;/a&gt; (San Francisco, CA)&lt;/p&gt;
+&lt;p&gt;12 intense weeks of data science training from machine learning, data munging to visualization through both group and individual open source projects. Hiring day with SF-Silicon Valley companies. &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://dssg.io/"&gt;Data Science for Social Good&lt;/a&gt; (Chicago, IL)&lt;/p&gt;
+&lt;p&gt;The goal is to send out data scientists to work on projects with social impact. Works closely with local government and nonprofits, training data science skills in teams. &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://insightdatascience.com/"&gt;Insight Data Science Fellows Program&lt;/a&gt; (Mountain View, CA)&lt;/p&gt;
+&lt;p&gt;Doubles as a postdoc to bridge PhD-level knowledge and a career in data science. Direct mentorship from the biggest Silicon Valley companies.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://generalassemb.ly/education/data-science"&gt;General Assembly - Data Science&lt;/a&gt; (San Francisco, CA)&lt;/p&gt;
+&lt;p&gt;They are more web dev focused but they now have a data science course. Access to &lt;a href="https://generalassemb.ly/studio"&gt;GA Studio&lt;/a&gt;. &lt;/p&gt;</summary><category term="bootcamps"></category></entry><entry><title>Static blogging using Pelican for quasi-hackers</title><link href="http://tokestermw.github.io/posts/static-blogging-using-pelican-for-quasi-hackers.html" rel="alternate"></link><updated>2013-07-24T00:00:00-07:00</updated><author><name>Motoki Wu</name></author><id>tag:tokestermw.github.io,2013-07-24:posts/static-blogging-using-pelican-for-quasi-hackers.html</id><summary type="html">&lt;p&gt;&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt; was a natural choice for a &lt;em&gt;quasi-hacker&lt;/em&gt; like me, which I define as people who like to tinker around than rebuilding the wheel from scratch (at least in terms of web dev skills, &lt;a href="http://columbiadatascience.com/2012/12/03/in-defense-of-statistics-or-why-data-scientists-should-make-understanding-statistics-a-priority/"&gt;stats is another story&lt;/a&gt;). A static blog generator like Pelican is comfy because it acts as an extension of my workflow. All of my writing, equations and coding are written in text files so it's a breeze to organize them in &lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt; and &lt;a href="http://jinja.pocoo.org/docs/"&gt;Jinja2&lt;/a&gt;. I wanted this site to look and act minimalist, so it's nice to have full control and not have to fiddle with databases, server maintenance, security, etc. Hosting is easy, I just have to copy and paste all of the generated files to a hosting service.&lt;/p&gt;
+&lt;p&gt;What follows will be my notes on the structure of this website, I hope it's useful. I'm assuming people have already installed the Python packages and have done &lt;code&gt;pelican-quickstart&lt;/code&gt; (choose "yes" on the Makefile and simpleHTTP script).&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Last updated: 2013-08-28 (Pelican 3.2.2)&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;File structure of the Pelican&lt;/h2&gt;
+&lt;p&gt;It's important to understand the default file structure in Pelican. Unlike &lt;a href="http://jekyllrb.com"&gt;Jekyll&lt;/a&gt;, not everything in the working directory gets copied over to the &lt;code&gt;output&lt;/code&gt; directory. &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;yourproject/
+|--- content
+     |--- pages
+     |---(posts)
+     |---images
+|--- output
+|--- develop_server.sh
+|--- Makefile
+|--- pelicanconf.py       # Main settings file
+|--- publishconf.py       # Settings to use when ready to publish
+&lt;/pre&gt;&lt;/div&gt;
 
-  h &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;.2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;beta&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;beta&lt;span class="p"&gt;))&lt;/span&gt;
-  &lt;span class="c1"&gt;# beta &amp;lt;- log((h - 0.2) / (1 - h))&lt;/span&gt;
 
-&lt;span class="c1"&gt;#  eps &amp;lt;- matrix(rnorm((max(T)+1)*m,0,1), max(T)+1, m)&lt;/span&gt;
-&lt;span class="c1"&gt;# eps[t] = eps[t-1]*phiT + sqrt(1+phiT^2)eta[t]&lt;/span&gt;
-  eps &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="kr"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;k in &lt;span class="m"&gt;1&lt;/span&gt;:m&lt;span class="p"&gt;)&lt;/span&gt;
-    eps&lt;span class="p"&gt;[,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; arima.sim&lt;span class="p"&gt;(&lt;/span&gt;list&lt;span class="p"&gt;(&lt;/span&gt;ar &lt;span class="o"&gt;=&lt;/span&gt; phiT&lt;span class="p"&gt;),&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;p&gt;Any Markdown or reStructuredText files inside the &lt;code&gt;content&lt;/code&gt; folder will be used to generate articles to the &lt;code&gt;output&lt;/code&gt; folder. The default behavior for the &lt;code&gt;pages&lt;/code&gt; and &lt;code&gt;images&lt;/code&gt; adds ancillary pages and images respectively into &lt;code&gt;output/static&lt;/code&gt;. If you want to specify other directories, you can configure them inside the config file &lt;code&gt;pelicanconf.py&lt;/code&gt;.  &lt;/p&gt;
+&lt;h1&gt;pelicanconf.py&lt;/h1&gt;
+&lt;p&gt;The main configuration file is a bunch of &lt;a href="http://docs.getpelican.com/en/3.2/settings.html#basic-settings"&gt;configurable Python variables&lt;/a&gt; (in all caps) that you can reference through Jinja2 templating. Start with the basics:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;AUTHOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Motoki Wu&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Shrunken Master&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-  &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;length&lt;span class="p"&gt;(&lt;/span&gt;errR&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; length&lt;span class="p"&gt;(&lt;/span&gt;errI&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; length&lt;span class="p"&gt;(&lt;/span&gt;errN&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="m"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    errR &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; exp&lt;span class="p"&gt;(&lt;/span&gt;eps&lt;span class="o"&gt;*&lt;/span&gt;sigR &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;sigR&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    errI &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;rnorm&lt;span class="p"&gt;((&lt;/span&gt;max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;m&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;sigI&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;sigI&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)&lt;/span&gt;
-    errN &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;rnorm&lt;span class="p"&gt;((&lt;/span&gt;max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;m&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;sigN&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;sigN&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
 
-  R0 &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; B0 &lt;span class="o"&gt;/&lt;/span&gt; phi0
- &lt;span class="c1"&gt;# print(q)&lt;/span&gt;
-  phi &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;E &lt;span class="o"&gt;%*%&lt;/span&gt; diag&lt;span class="p"&gt;(&lt;/span&gt;q&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="c1"&gt;# matrix(exp(-q*E), T+1, m) # percent non-catch&lt;/span&gt;
+&lt;p&gt;As mentioned before, you can set your static paths inside the &lt;code&gt;content&lt;/code&gt; folder. Create a &lt;code&gt;posts&lt;/code&gt; to have Pelican deploy it to &lt;code&gt;output/posts&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-  B &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# spawning stock biomass&lt;/span&gt;
-  R &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# recruitment&lt;/span&gt;
-  C &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# catch&lt;/span&gt;
-  I &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# biomass index&lt;/span&gt;
-  N &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; max&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# recruitment index&lt;/span&gt;
 
-  &lt;span class="c1"&gt;# first year&lt;/span&gt;
-  B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; B0
-  C&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; phi&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,])&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
-  R&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; BH&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,],&lt;/span&gt;R0&lt;span class="p"&gt;,&lt;/span&gt;h&lt;span class="p"&gt;,&lt;/span&gt;phi0&lt;span class="p"&gt;,&lt;/span&gt;errR&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,])&lt;/span&gt; &lt;span class="c1"&gt;# R0&lt;/span&gt;
-  I&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; qI&lt;span class="o"&gt;*&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;errI&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; 
-  N&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; qN&lt;span class="o"&gt;*&lt;/span&gt;R&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;errN&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
+&lt;p&gt;Alternatively, you can customize the &lt;code&gt;slug&lt;/code&gt; for more dynamic URLs. The &lt;code&gt;slug&lt;/code&gt; of each article is either specified in the Markdown files, or Pelican makes one from the title.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;ARTICLE_DIR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;posts/{date:%Y}/{date:%b}/{date:&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;}/{slug}.html&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;posts/{date:%Y}/{date:%b}/{date:&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;}/{slug}.html&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-  &lt;span class="c1"&gt;# second year  &lt;/span&gt;
-  R&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; BH&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,],&lt;/span&gt;R0&lt;span class="p"&gt;,&lt;/span&gt;h&lt;span class="p"&gt;,&lt;/span&gt;phi0&lt;span class="p"&gt;,&lt;/span&gt;errR&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,])&lt;/span&gt; &lt;span class="c1"&gt;# assume B_2-L = B_1-L &lt;/span&gt;
-  B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;M&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; p &lt;span class="o"&gt;-&lt;/span&gt; p&lt;span class="o"&gt;*&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;M&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; C&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,])&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;
-    p&lt;span class="o"&gt;*&lt;/span&gt;w&lt;span class="o"&gt;*&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;M&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; R&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; C&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,])&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; R&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
 
-  C&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; phi&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
-  I&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; qI &lt;span class="o"&gt;*&lt;/span&gt; B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; errI&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
-  N&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; qN &lt;span class="o"&gt;*&lt;/span&gt; R&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; errN&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
+&lt;p&gt;Most importantly, you'll need to set the &lt;a href="http://docs.getpelican.com/en/3.2/settings.html#url-settings"&gt;URL settings&lt;/a&gt; of the blog. For testing, I think it's good to set &lt;code&gt;RELATIVE_URLS = True&lt;/code&gt;. Then when you publish your blog, you can set it &lt;code&gt;False&lt;/code&gt; in your &lt;code&gt;publishconf.py&lt;/code&gt; file. &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://tokestermw.github.io&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;RELATIVE_URLS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-  &lt;span class="kr"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;k in &lt;span class="m"&gt;1&lt;/span&gt;:m&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kr"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;t in &lt;span class="m"&gt;2&lt;/span&gt;:&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      R&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; BH&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;ifelse&lt;span class="p"&gt;(&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;L &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;L&lt;span class="p"&gt;),&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt;
-                     R0&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt;h&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt;phi0&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt;errR&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt;
-      B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;p&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;M&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; C&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;
-        p&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;-2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;M&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; C&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; C&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;
-          p&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;w&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;M&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; C&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; R&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; R&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;
-      C&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; phi&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;
-      I&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; qI &lt;span class="o"&gt;*&lt;/span&gt; B&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; errI&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;
-      N&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; qN &lt;span class="o"&gt;*&lt;/span&gt; R&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; errN&lt;span class="p"&gt;[&lt;/span&gt;t&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;h2&gt;Stylin'&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="http://docs.getpelican.com/en/3.1.1/themes.html"&gt;file structure for each theme&lt;/a&gt; will need to follow this structure:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;|--- static
+     |--- css
+     |--- images
+|--- templates
+     |--- archives.html    // to display archives
+     |--- article.html     // processed for each article
+     |--- author.html      // processed for each author
+     |--- authors.html     // must list all the authors
+     |--- categories.html  // must list all the categories
+     |--- category.html    // processed for each category
+     |--- index.html       // the index. List all the articles
+     |--- page.html        // processed for each page
+     |--- tag.html         // processed for each tag
+     |--- tags.html        // must list all the tags. Can be a tag cloud.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All of the files inside &lt;code&gt;static&lt;/code&gt; will be copied over to the &lt;code&gt;output&lt;/code&gt; folder, while any non-default template file needs to be directly linked. &lt;/p&gt;
+&lt;p&gt;You can specify the location of the theme by specifying it in &lt;code&gt;pelicanconf.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;./theme&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It is good to download an example theme to get things started. I liked &lt;a href="http://timotheepoisot.fr/"&gt;Tim Poisot's&lt;/a&gt; Jekyll site so I adopted that to my blog. I liked the general look of &lt;a href="http://www.edwardtufte.com/tufte/index"&gt;Tufte's&lt;/a&gt; site so you can see its influence.&lt;/p&gt;
+&lt;h1&gt;Jinja2 templating&lt;/h1&gt;
+&lt;p&gt;With Jinja templating, I can define variables, use inheritance to template the website and take advantage of basic programming functions (e.g. for loops). &lt;/p&gt;
+&lt;p&gt;Variables defined in &lt;code&gt;pelicanconf.py&lt;/code&gt; can be referenced to a Jinja template. Say in &lt;code&gt;index.html&lt;/code&gt;, I can link to my CSS file within my theme:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt; &lt;span class="nv"&gt;SITEURL&lt;/span&gt; &lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="s"&gt;/theme/styles.css&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Inheritance happens in conjunction with template tags. Say in &lt;code&gt;parent.html&lt;/code&gt;, you can use the &lt;code&gt;block&lt;/code&gt; tag to include content from another file. The most common usage in a blog is to keep the overall structure of the site in &lt;code&gt;parent.html&lt;/code&gt; while putting individual blog posts inside say &lt;code&gt;child.html&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;bla bla html+jinja code
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;block&lt;/span&gt; &lt;span class="nv"&gt;content&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;endblock&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+bla bla more html+jinja code
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then &lt;code&gt;extends&lt;/code&gt; the parent in &lt;code&gt;child.html&lt;/code&gt; (make sure the name of the block matches):&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;extends&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;parent.html&amp;quot;&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;block&lt;/span&gt; &lt;span class="nv"&gt;content&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+blabla html code
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;endblock&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;span class="margin"&gt;All the action is in &lt;a href="https://github.com/getpelican/pelican/blob/master/pelican/contents.py"&gt;context.py&lt;/a&gt; and &lt;a href="https://github.com/getpelican/pelican/blob/master/pelican/generators.py"&gt;generators.py&lt;/a&gt; of the source code but I have to spend time understanding it.
+    &lt;/span&gt;You can add &lt;code&gt;for&lt;/code&gt; loops to lists (e.g. &lt;code&gt;articles&lt;/code&gt;, &lt;code&gt;dates&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;, &lt;code&gt;pages&lt;/code&gt;) generated in Pelican. For example, my &lt;code&gt;archives.html&lt;/code&gt; look like this:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;{% for article in dates %}
+&amp;lt;ul class=&amp;quot;leaders&amp;quot;&amp;gt;
+    &amp;lt;li&amp;gt;&amp;lt;span&amp;gt;&amp;lt;a href=&amp;#39;{{ article.url }}&amp;#39;&amp;gt;{{ article.title }}&amp;lt;/a&amp;gt;&amp;lt;/span&amp;gt;
+        &amp;lt;span&amp;gt;{{ article.locale_date }}&amp;lt;/span&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+{% endfor %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The attributes of the list (e.g. &lt;code&gt;url&lt;/code&gt;, &lt;code&gt;title&lt;/code&gt;) come from metatags specified in the Markdown files. It sucks that documentation is light for variables called inside Jinja2. For example,  &lt;code&gt;{{ article.content }}&lt;/code&gt; inside your &lt;code&gt;article.html&lt;/code&gt; pastes the content from your Markdown files. I wouldn't have known about it without sample themes. &lt;/p&gt;
+&lt;h1&gt;CSS&lt;/h1&gt;
+&lt;p&gt;A note on CSS. I added a &lt;code&gt;margin&lt;/code&gt; class so I can put sidenotes beside my blog posts. I basically created a big div for two columns (&lt;code&gt;content&lt;/code&gt;) and make one div that is narrower (&lt;code&gt;pbody&lt;/code&gt;). The HTML hierarchy looks like this:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; body 
+    &amp;gt; content 
+        &amp;gt; margin 
+        &amp;gt; pbody
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Fix the position of the &lt;code&gt;margin&lt;/code&gt; to where you want the sidenote located:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nc"&gt;.margin&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;absolute&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;0px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;19&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;small&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;span class="margin"&gt;This is a sidenote.&lt;/span&gt;Then add a span inside your paragraph.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;margin&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This is a sidenote.&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+Then add a span inside your paragraph.&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Writing articles, aka I thought we were supposed to focus on content&lt;/h2&gt;
+&lt;p&gt;The metadata that you set in Markdown (or reStructuredText) is hugely important in how the files are generated. &lt;/p&gt;
+&lt;h1&gt;Markdown&lt;/h1&gt;
+&lt;p&gt;The only metadata that is necessary is &lt;code&gt;title&lt;/code&gt;, but you should have &lt;code&gt;date&lt;/code&gt; as well (for sorting other functions). Here is mine for this very article:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;title: Static blogging using Pelican for quasi-hackers
+slug: Static-blogging-using-Pelican-for-quasi-hackers
+date: 2013-07-24
+tags: pelican
+author: Motoki Wu
+summary: Just another Pelican blog and just another Pelican blog tutorial.
+status: draft
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Include something similar in every &lt;code&gt;.md&lt;/code&gt; file. The &lt;code&gt;status:draft&lt;/code&gt; allows me to output a Pelican generated file to the &lt;code&gt;output/drafts&lt;/code&gt; folder without publishing it. If not specified, the &lt;code&gt;slug&lt;/code&gt; is taken from &lt;code&gt;title&lt;/code&gt; and adds hyphens in place of spaces. &lt;/p&gt;
+&lt;h1&gt;Comments&lt;/h1&gt;
+&lt;p&gt;Adding &lt;a href="http://disqus.com/"&gt;DISQUS&lt;/a&gt; comments is easy. In your &lt;code&gt;pelicanconf.py&lt;/code&gt;, add:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;DISQUS_SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;your disqus username&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then include it in your templates (probably &lt;code&gt;article.html&lt;/code&gt;).&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;DISQUS_SITENAME&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;include&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;disqus_comments.html&amp;#39;&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;{%&lt;/span&gt; &lt;span class="k"&gt;endif&lt;/span&gt; &lt;span class="cp"&gt;%}&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I added &lt;code&gt;disqus_comments.html&lt;/code&gt; so I can put the javascript code in a separate file.&lt;/p&gt;
+&lt;p&gt;I played with static(-ish) commenting platforms (&lt;a href="http://theshed.hezmatt.org/jekyll-static-comments/"&gt;jekyll static commenting&lt;/a&gt;, &lt;a href="https://github.com/bstpierre/pelican-comments"&gt;pelican-comments&lt;/a&gt;, &lt;a href="https://gitorious.org/wt-comments/wt-comments"&gt;wt-comments&lt;/a&gt;, &lt;a href="https://code.google.com/p/jskomment/"&gt;jskomment&lt;/a&gt;, &lt;a href="http://talka.tv/"&gt;talkatv&lt;/a&gt;) for a bit, but none were satisfactory. &lt;/p&gt;
+&lt;h1&gt;Code highlighting&lt;/h1&gt;
+&lt;p&gt;Code highlighting is done in &lt;a href="http://pygments.org/"&gt;Pygments&lt;/a&gt;. First add the &lt;code&gt;codehilite&lt;/code&gt; extension to your &lt;code&gt;pelicanconf.py&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;MD_EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;codehilite(guess_lang=False)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To add Python code like this,&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@deterministic&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;rate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;switchpoint&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;early_mean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;late_mean&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39; Concatenate Poisson means &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;disasters_array&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;
+    &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;just put this in your Markdown file:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    :::python
+    @deterministic(plot=False)
+    def rate(s=switchpoint, e=early_mean, l=late_mean):
+        &amp;#39;&amp;#39;&amp;#39; Concatenate Poisson means &amp;#39;&amp;#39;&amp;#39;
+        out = empty(len(disasters_array))
+        out[:s] = e
+        out[s:] = l
+        return out
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All of the lexers can be found &lt;a href="http://pygments.org/docs/lexers/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Equations&lt;/h1&gt;
+&lt;p&gt;To use &lt;a href="http://docs.mathjax.org/en/latest/start.html"&gt;MathJax&lt;/a&gt;, add something like this to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt; &lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt; &lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text/x-mathjax-config&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;MathJax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Hub&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Config&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+    &lt;span class="nx"&gt;imageFont&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nx"&gt;messageStyle&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;none&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+    &lt;span class="nx"&gt;extensions&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tex2jax.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="nx"&gt;jax&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;input/TeX&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;output/HTML-CSS&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="nx"&gt;tex2jax&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="nx"&gt;inlineMath&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
+          &lt;span class="nx"&gt;displayMath&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="nx"&gt;processEscapes&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt; &lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-  list&lt;span class="p"&gt;(&lt;/span&gt;B &lt;span class="o"&gt;=&lt;/span&gt; B&lt;span class="p"&gt;,&lt;/span&gt; I &lt;span class="o"&gt;=&lt;/span&gt; I&lt;span class="p"&gt;,&lt;/span&gt; C &lt;span class="o"&gt;=&lt;/span&gt; C&lt;span class="p"&gt;,&lt;/span&gt; R &lt;span class="o"&gt;=&lt;/span&gt; R&lt;span class="p"&gt;,&lt;/span&gt; N &lt;span class="o"&gt;=&lt;/span&gt; N&lt;span class="p"&gt;,&lt;/span&gt; E &lt;span class="o"&gt;=&lt;/span&gt; E&lt;span class="p"&gt;,&lt;/span&gt; mu &lt;span class="o"&gt;=&lt;/span&gt; mu&lt;span class="p"&gt;,&lt;/span&gt; tau &lt;span class="o"&gt;=&lt;/span&gt; tau&lt;span class="p"&gt;,&lt;/span&gt;
-       p &lt;span class="o"&gt;=&lt;/span&gt; p&lt;span class="p"&gt;,&lt;/span&gt; w &lt;span class="o"&gt;=&lt;/span&gt; w&lt;span class="p"&gt;,&lt;/span&gt; M &lt;span class="o"&gt;=&lt;/span&gt; M&lt;span class="p"&gt;,&lt;/span&gt; phiT &lt;span class="o"&gt;=&lt;/span&gt; phiT&lt;span class="p"&gt;,&lt;/span&gt;
-       h &lt;span class="o"&gt;=&lt;/span&gt; h&lt;span class="p"&gt;,&lt;/span&gt; beta &lt;span class="o"&gt;=&lt;/span&gt; beta&lt;span class="p"&gt;,&lt;/span&gt; phi &lt;span class="o"&gt;=&lt;/span&gt; phi&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; L&lt;span class="o"&gt;=&lt;/span&gt;L&lt;span class="p"&gt;,&lt;/span&gt; qI &lt;span class="o"&gt;=&lt;/span&gt; qI&lt;span class="p"&gt;,&lt;/span&gt; qN &lt;span class="o"&gt;=&lt;/span&gt; qN&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="o"&gt;=&lt;/span&gt;m&lt;span class="p"&gt;,&lt;/span&gt;
-       q &lt;span class="o"&gt;=&lt;/span&gt; q&lt;span class="p"&gt;,&lt;/span&gt; B0 &lt;span class="o"&gt;=&lt;/span&gt; B0&lt;span class="p"&gt;,&lt;/span&gt; R0 &lt;span class="o"&gt;=&lt;/span&gt; R0&lt;span class="p"&gt;,&lt;/span&gt; phi0 &lt;span class="o"&gt;=&lt;/span&gt; phi0&lt;span class="p"&gt;,&lt;/span&gt; eps &lt;span class="o"&gt;=&lt;/span&gt; eps&lt;span class="p"&gt;,&lt;/span&gt;
-       errR &lt;span class="o"&gt;=&lt;/span&gt; errR&lt;span class="p"&gt;,&lt;/span&gt; errI &lt;span class="o"&gt;=&lt;/span&gt; errI&lt;span class="p"&gt;,&lt;/span&gt; errN &lt;span class="o"&gt;=&lt;/span&gt; errN&lt;span class="p"&gt;,&lt;/span&gt;
-       sigR &lt;span class="o"&gt;=&lt;/span&gt; sigR&lt;span class="p"&gt;,&lt;/span&gt; sigI &lt;span class="o"&gt;=&lt;/span&gt; sigI&lt;span class="p"&gt;,&lt;/span&gt; sigN &lt;span class="o"&gt;=&lt;/span&gt; sigN&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;p&gt;Test:&lt;/p&gt;
+&lt;p&gt;$$ I = \int_a^b e^{-\lambda g(y)} h(y)dy $$&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="sb"&gt;$$&lt;/span&gt;&lt;span class="nb"&gt; I &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt; &lt;/span&gt;&lt;span class="nv"&gt;\int&lt;/span&gt;&lt;span class="nb"&gt;_a^b e^{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;\lambda&lt;/span&gt;&lt;span class="nb"&gt; g&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;y&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nb"&gt;} h&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;y&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nb"&gt;dy &lt;/span&gt;&lt;span class="s"&gt;$$&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Fonts&lt;/h1&gt;
+&lt;p&gt;I thought about using &lt;a href="http://www.smashingmagazine.com/2010/10/20/review-of-popular-web-font-embedding-services/"&gt;web fonts&lt;/a&gt;, but I wanted something local so at least the loading times would be consistent. From what I understand, using custom fonts may have &lt;a href="http://www.stevesouders.com/blog/2009/10/13/font-face-and-performance/"&gt;issues&lt;/a&gt; with FOUT and slow load times but the distinct look that it gives is worth it. You might notice that the different fonts do load in staggered fashion.&lt;/p&gt;
+&lt;p&gt;To use custom fonts, I first downloaded the font kit from &lt;a href="http://www.fontsquirrel.com/"&gt;Font Squirrel&lt;/a&gt; that I liked (&lt;a href="http://www.fontsquirrel.com/fonts/ubuntu?q=ubuntu"&gt;Ubuntu in my case&lt;/a&gt;). Font Squirrel has &lt;a href="http://webdesignandsuch.com/fix-fonts-that-dont-work-with-google-font-api-in-internet-explorer-or-chrome-with-font-face/"&gt;good cross-browser support&lt;/a&gt;, it's free and it's easy to install. You just need to use the &lt;code&gt;@font-face&lt;/code&gt; property in CSS. Link to the regular, bold and italic fonts, from your CSS file,&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;@font-face&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ubuntu&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;../theme/font/ubuntu/Ubuntu-R.ttf&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="nt"&gt;font-weight&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;normal&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nt"&gt;font-style&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;normal&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="c1"&gt;## stock recruitment function&lt;/span&gt;
-BH &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;,&lt;/span&gt; R0&lt;span class="p"&gt;,&lt;/span&gt; h&lt;span class="p"&gt;,&lt;/span&gt; phi0&lt;span class="p"&gt;,&lt;/span&gt; err&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  R &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="m"&gt;0.8&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;R0&lt;span class="o"&gt;*&lt;/span&gt;h&lt;span class="o"&gt;*&lt;/span&gt;B &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0.2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;phi0&lt;span class="o"&gt;*&lt;/span&gt;R0&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;h&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;h&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="m"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;B&lt;span class="p"&gt;)&lt;/span&gt;
-  as.matrix&lt;span class="p"&gt;(&lt;/span&gt;R &lt;span class="o"&gt;*&lt;/span&gt; err&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;@font-face&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ubuntu&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;../theme/font/ubuntu/Ubuntu-B.ttf&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="nt"&gt;font-weight&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;bold&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nt"&gt;font-style&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;normal&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="c1"&gt;## stagger the B and R data for meta-analysis&lt;/span&gt;
-stagger &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;L&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;,&lt;/span&gt; B&lt;span class="p"&gt;,&lt;/span&gt; R&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  B.stag &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; dim&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;L&lt;span class="p"&gt;,&lt;/span&gt; dim&lt;span class="p"&gt;(&lt;/span&gt;B&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-  R.stag &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; matrix&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; dim&lt;span class="p"&gt;(&lt;/span&gt;R&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;L&lt;span class="p"&gt;,&lt;/span&gt; dim&lt;span class="p"&gt;(&lt;/span&gt;R&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-  &lt;span class="kr"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;k in &lt;span class="m"&gt;1&lt;/span&gt;:m&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    B.stag&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;:&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;L&lt;span class="p"&gt;),&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; B&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;:&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;L&lt;span class="p"&gt;),&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;
-    R.stag&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;:&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;L&lt;span class="p"&gt;),&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; R&lt;span class="p"&gt;[(&lt;/span&gt;L&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;:&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-  list&lt;span class="p"&gt;(&lt;/span&gt;B &lt;span class="o"&gt;=&lt;/span&gt; B.stag&lt;span class="p"&gt;,&lt;/span&gt; R &lt;span class="o"&gt;=&lt;/span&gt; R.stag&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;@font-face&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ubuntu&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;../theme/font/ubuntu/Ubuntu-RI.ttf&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="nt"&gt;font-weight&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;normal&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nt"&gt;font-style&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;italic&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;then you can use your font in the appropriate places:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;it&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;font-style&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;italic&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;font-weight&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;inherit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Helvetica Neue&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Helvetica&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="c1"&gt;## wrapper for running the operating model just for one stock&lt;/span&gt;
-opmodel.sing &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;k&lt;span class="p"&gt;,&lt;/span&gt; pars&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; E&lt;span class="p"&gt;,&lt;/span&gt; L&lt;span class="p"&gt;,&lt;/span&gt; phi0&lt;span class="p"&gt;,&lt;/span&gt; errR&lt;span class="p"&gt;,&lt;/span&gt; errI&lt;span class="p"&gt;,&lt;/span&gt; errN&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  pars.k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; with&lt;span class="p"&gt;(&lt;/span&gt;pars&lt;span class="p"&gt;,&lt;/span&gt; list&lt;span class="p"&gt;(&lt;/span&gt;beta&lt;span class="o"&gt;=&lt;/span&gt;beta&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt; mu&lt;span class="o"&gt;=&lt;/span&gt;mu&lt;span class="p"&gt;,&lt;/span&gt; tau&lt;span class="o"&gt;=&lt;/span&gt;tau&lt;span class="p"&gt;,&lt;/span&gt; B0&lt;span class="o"&gt;=&lt;/span&gt;B0&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt; p&lt;span class="o"&gt;=&lt;/span&gt;p&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt; w&lt;span class="o"&gt;=&lt;/span&gt;w&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt; M&lt;span class="o"&gt;=&lt;/span&gt;M&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;],&lt;/span&gt;
-                            sigR&lt;span class="o"&gt;=&lt;/span&gt;sigR&lt;span class="p"&gt;,&lt;/span&gt; qI&lt;span class="o"&gt;=&lt;/span&gt;qI&lt;span class="p"&gt;,&lt;/span&gt; sigI&lt;span class="o"&gt;=&lt;/span&gt;sigI&lt;span class="p"&gt;,&lt;/span&gt; sigN&lt;span class="o"&gt;=&lt;/span&gt;sigN&lt;span class="p"&gt;,&lt;/span&gt; qN&lt;span class="o"&gt;=&lt;/span&gt;qN&lt;span class="p"&gt;,&lt;/span&gt; q&lt;span class="o"&gt;=&lt;/span&gt;q&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]))&lt;/span&gt;
-  m.k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;
-  &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="m"&gt;.&lt;/span&gt;k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;
-  E.k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; t&lt;span class="p"&gt;(&lt;/span&gt;t&lt;span class="p"&gt;(&lt;/span&gt;E&lt;span class="p"&gt;[,&lt;/span&gt;k&lt;span class="p"&gt;]))&lt;/span&gt;
-  L.k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; L &lt;span class="c1"&gt;# still needs changing&lt;/span&gt;
-  phi0.k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; phi0&lt;span class="p"&gt;[&lt;/span&gt;k&lt;span class="p"&gt;]&lt;/span&gt;
-  errR.k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; t&lt;span class="p"&gt;(&lt;/span&gt;t&lt;span class="p"&gt;(&lt;/span&gt;errR&lt;span class="p"&gt;[,&lt;/span&gt;k&lt;span class="p"&gt;]))&lt;/span&gt;
-  errI.k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; t&lt;span class="p"&gt;(&lt;/span&gt;t&lt;span class="p"&gt;(&lt;/span&gt;errI&lt;span class="p"&gt;[,&lt;/span&gt;k&lt;span class="p"&gt;]))&lt;/span&gt;
-  errN.k &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; t&lt;span class="p"&gt;(&lt;/span&gt;t&lt;span class="p"&gt;(&lt;/span&gt;errN&lt;span class="p"&gt;[,&lt;/span&gt;k&lt;span class="p"&gt;]))&lt;/span&gt;
-&lt;span class="c1"&gt;#  print(paste(&amp;quot;sing&amp;quot;, pars.k$q))&lt;/span&gt;
-  opmodel&lt;span class="p"&gt;(&lt;/span&gt;pars.k&lt;span class="p"&gt;,&lt;/span&gt; m.k&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="m"&gt;.&lt;/span&gt;k&lt;span class="p"&gt;,&lt;/span&gt; E.k&lt;span class="p"&gt;,&lt;/span&gt; L.k&lt;span class="p"&gt;,&lt;/span&gt; phi0.k&lt;span class="p"&gt;,&lt;/span&gt; errR.k&lt;span class="p"&gt;,&lt;/span&gt; errI.k&lt;span class="p"&gt;,&lt;/span&gt; errN.k&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nt"&gt;b&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;strong&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;font-weight&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;bold&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;font-style&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;inherit&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Helvetica Neue&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Helvetica&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="c1"&gt;## wrapper for finding the right q&lt;/span&gt;
-opmodel.dep &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;q.dep&lt;span class="p"&gt;,&lt;/span&gt; T_dep&lt;span class="p"&gt;,&lt;/span&gt; dep&lt;span class="p"&gt;,&lt;/span&gt; k&lt;span class="p"&gt;,&lt;/span&gt; pars&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; E&lt;span class="p"&gt;,&lt;/span&gt; L&lt;span class="p"&gt;,&lt;/span&gt; phi0&lt;span class="p"&gt;,&lt;/span&gt;
-                        errR&lt;span class="p"&gt;,&lt;/span&gt; errI&lt;span class="p"&gt;,&lt;/span&gt; errN&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  pars&lt;span class="p"&gt;$&lt;/span&gt;q &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; q.dep
-  out &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; opmodel&lt;span class="p"&gt;(&lt;/span&gt;pars&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; E&lt;span class="p"&gt;,&lt;/span&gt; L&lt;span class="p"&gt;,&lt;/span&gt; phi0&lt;span class="p"&gt;,&lt;/span&gt; errR&lt;span class="p"&gt;,&lt;/span&gt; errI&lt;span class="p"&gt;,&lt;/span&gt; errN&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;out&lt;span class="p"&gt;$&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;T_dep&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; out&lt;span class="p"&gt;$&lt;/span&gt;B0&lt;span class="o"&gt;*&lt;/span&gt;dep&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="c1"&gt;## wrapper for finding perfect q&lt;/span&gt;
-opmodel.pq &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;q.dep&lt;span class="p"&gt;,&lt;/span&gt; k&lt;span class="p"&gt;,&lt;/span&gt; T_dep&lt;span class="p"&gt;,&lt;/span&gt; dep&lt;span class="p"&gt;,&lt;/span&gt; pars&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; E&lt;span class="p"&gt;,&lt;/span&gt; L&lt;span class="p"&gt;,&lt;/span&gt; phi0&lt;span class="p"&gt;,&lt;/span&gt;
-                       errR&lt;span class="p"&gt;,&lt;/span&gt; errI&lt;span class="p"&gt;,&lt;/span&gt; errN&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  out &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; opmodel.sing&lt;span class="p"&gt;(&lt;/span&gt;k&lt;span class="p"&gt;,&lt;/span&gt; pars&lt;span class="p"&gt;,&lt;/span&gt; m&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k-Variable"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; E&lt;span class="p"&gt;,&lt;/span&gt; L&lt;span class="p"&gt;,&lt;/span&gt; phi0&lt;span class="p"&gt;,&lt;/span&gt; errR&lt;span class="p"&gt;,&lt;/span&gt; errI&lt;span class="p"&gt;,&lt;/span&gt; errN&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;out&lt;span class="p"&gt;$&lt;/span&gt;B&lt;span class="p"&gt;[&lt;/span&gt;T_dep&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; out&lt;span class="p"&gt;$&lt;/span&gt;B0&lt;span class="o"&gt;*&lt;/span&gt;dep&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;h2&gt;Optimize, optimize&lt;/h2&gt;
+&lt;p&gt;I realized the site was slow, so I &lt;a href="http://www.webpagetest.org/"&gt;checked the load times of each component&lt;/a&gt;. I first put my &lt;a href="http://www.google.com/analytics/"&gt;Google Analytics&lt;/a&gt; script to the bottom of the page so the website at least tries to load even with a bad connection. But the biggest culprit for slow load times were the fonts. So I followed &lt;a href="http://www.artzstudio.com/2012/02/web-font-performance-weighing-fontface-options-and-alternatives/"&gt;these directions here&lt;/a&gt; to minimize the file size for fonts.&lt;/p&gt;
+&lt;p&gt;I uploaded my fonts to &lt;a href="http://www.fontsquirrel.com/tools/webfont-generator"&gt;Font Squirrel generator&lt;/a&gt; to remove glyphs that will not be in use, and then gzipped the files by putting this in my &lt;code&gt;.htaccess&lt;/code&gt; file. &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# compress text, html, javascript, css, xml:&lt;/span&gt;
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE text/plain
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE text/html
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE text/xml
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE text/css
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE application/xml
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE application/xhtml+xml
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE application/rss+xml
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE application/javascript
+&lt;span class="nb"&gt;AddOutputFilterByType&lt;/span&gt; DEFLATE application/x-javascript
 
-&lt;span class="c1"&gt;## h -&amp;gt; beta&lt;/span&gt;
-h_to_beta &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;h&lt;span class="p"&gt;)&lt;/span&gt;
-  log&lt;span class="p"&gt;((&lt;/span&gt;h &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="m"&gt;.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; h&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c"&gt;# cache font files for 30+ days&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;FilesMatch&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;\.(woff|ttf|svg)$&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;Header&lt;/span&gt; set Cache-Control &lt;span class="s2"&gt;&amp;quot;max-age=2030400, public&amp;quot;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/FilesMatch&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="c1"&gt;## beta -&amp;gt; h&lt;/span&gt;
-beta_to_h &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;beta&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;exp&lt;span class="p"&gt;(&lt;/span&gt;beta&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="m"&gt;.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; exp&lt;span class="p"&gt;(&lt;/span&gt;beta&lt;span class="p"&gt;))&lt;/span&gt;
 
-&lt;span class="c1"&gt;## dnorm for h&lt;/span&gt;
-beta_to_h.dnorm &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;h&lt;span class="p"&gt;,&lt;/span&gt; mu&lt;span class="p"&gt;,&lt;/span&gt; sigma&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="c1"&gt;#  h &amp;lt;- (exp(beta) + .2) / (1 + exp(beta))&lt;/span&gt;
-  beta &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; log&lt;span class="p"&gt;((&lt;/span&gt;h &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="m"&gt;.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; h&lt;span class="p"&gt;))&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;h&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="m"&gt;.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;h&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; sqrt&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;pi&lt;span class="o"&gt;*&lt;/span&gt;sigma&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; exp&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;beta &lt;span class="o"&gt;-&lt;/span&gt; mu&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;sigma&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;h2&gt;Hosting&lt;/h2&gt;
+&lt;p&gt;I decided to host my site on &lt;a href="https://help.github.com/articles/user-organization-and-project-pages"&gt;GitHub Pages&lt;/a&gt; where I can keep track of the code and the output files all in one place. The two types of Pages are User Pages and Project Pages. To use User Pages, you need to create a repo named  &lt;code&gt;username/username.github.io&lt;/code&gt;, and push the output folder to the master branch. The URL for the site then becomes &lt;code&gt;username.github.io&lt;/code&gt;. The Project Pages can put all the source code of your site alongside a &lt;code&gt;gh-pages&lt;/code&gt; branch for the &lt;code&gt;output&lt;/code&gt; folder. Mine is hosted via User Pages (so far). &lt;/p&gt;
+&lt;h1&gt;Makefile&lt;/h1&gt;
+&lt;p&gt;I use &lt;code&gt;make html&lt;/code&gt; from the &lt;a href="https://github.com/getpelican/pelican/blob/master/pelican/tools/templates/Makefile.in"&gt;Makefile&lt;/a&gt; a lot when developing my site to clean the &lt;code&gt;output&lt;/code&gt; folder and deploy a new version of the site. When I'm ready to publish, I use &lt;code&gt;make publish&lt;/code&gt;, then the &lt;code&gt;output&lt;/code&gt; folder is pushed to a remote. &lt;/p&gt;
+&lt;p&gt;When I am editing posts, I use &lt;code&gt;make devserver&lt;/code&gt; to locally host my website to &lt;code&gt;localhost:8000&lt;/code&gt; and work in the &lt;code&gt;drafts&lt;/code&gt; folder. Any time I need to fix the look of the website, I use &lt;code&gt;make html&lt;/code&gt; then I reload the page. To stop the local server, I do &lt;code&gt;make devstop&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;devstop:
+    &lt;span class="k"&gt;$(&lt;/span&gt;BASEDIR&lt;span class="k"&gt;)&lt;/span&gt;/develop_server.sh stop
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;span class="c1"&gt;## calculate 95% confidence intervals for steepness (h)&lt;/span&gt;
-h_profCI &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;h_search&lt;span class="p"&gt;,&lt;/span&gt; h_obj&lt;span class="p"&gt;,&lt;/span&gt; h_prof&lt;span class="p"&gt;,&lt;/span&gt; y&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  h_spline &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; splinefun&lt;span class="p"&gt;(&lt;/span&gt;h_prof&lt;span class="p"&gt;,&lt;/span&gt; y&lt;span class="p"&gt;,&lt;/span&gt; method &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;natural&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;((&lt;/span&gt;h_obj &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="m"&gt;1.3527&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; h_spline&lt;span class="p"&gt;(&lt;/span&gt;h_search&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="c1"&gt;## calculate 95% confidence intervals for steepness (beta)&lt;/span&gt;
-beta_profCI &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;beta_search&lt;span class="p"&gt;,&lt;/span&gt; h_obj&lt;span class="p"&gt;,&lt;/span&gt; beta_prof&lt;span class="p"&gt;,&lt;/span&gt; y&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  beta_spline &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; splinefun&lt;span class="p"&gt;(&lt;/span&gt;beta_prof&lt;span class="p"&gt;,&lt;/span&gt; y&lt;span class="p"&gt;,&lt;/span&gt; method &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;natural&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="p"&gt;((&lt;/span&gt;h_obj &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="m"&gt;1.3527&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; beta_spline&lt;span class="p"&gt;(&lt;/span&gt;beta_search&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="intro"></category><category term="R Code"></category></entry></feed>
+&lt;h1&gt;Git&lt;/h1&gt;
+&lt;p&gt;Admittedly, I am a little wary of my Git skills. So what I have is the default &lt;code&gt;output&lt;/code&gt; folder when testing my website, and a clone of my website in another. I use &lt;code&gt;rsync&lt;/code&gt; when I'm ready to sync, so I put this in my Makefile:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;rsync_git:
+    rsync -a &lt;span class="k"&gt;$(&lt;/span&gt;OUTPUTDIR&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;OUTPUTDIR_GIT&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now before the &lt;code&gt;push&lt;/code&gt;, I use the &lt;code&gt;-A&lt;/code&gt; option to &lt;a href="http://stackoverflow.com/questions/2190409/whats-the-difference-between-git-add-and-git-add-u/2190440#2190440"&gt;commit the deletes&lt;/a&gt;. &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="go"&gt;git add . -A&lt;/span&gt;
+&lt;span class="go"&gt;git commit -am &amp;#39;message here&amp;#39;&lt;/span&gt;
+&lt;span class="go"&gt;git push origin master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Further left to do&lt;/h2&gt;
+&lt;p&gt;I'm very satisfied overall. Once you get the hang of it, it's a joy to tinker with the look of the website and committing multiple posts in parallel. I still would like to optimize for mobile browsing, cross-browser support and integrate stuff like IPython Notebooks, but those could come later. &lt;/p&gt;
+&lt;!-- 
+notes:
+
+- mobile
+- https://github.com/posativ/acrylamid
+- local files
+- low traffic
+- notes for stuffffvf
+- markdown, ipython notebooks, knitr
+- mathjax
+- margin
+- disqus comments
+- fonts, ubuntu, http://www.edwardtufte.com/tufte/index
+- similar tim poisot
+- scroll bar
+- make file
+- pygments
+- email
+- .gitignore
+- pelicanconf
+- make html to check, make html_github to publish
+- status:draft
+- writing posts
+- github pages, user or gh-pages
+- still to do: tags, little iffy on Jinja2, d3js graphic (http://raichev.net/blog.html)
+- workflow
+- d3js
+- rss 
+--&gt;</summary><category term="pelican"></category></entry></feed>
