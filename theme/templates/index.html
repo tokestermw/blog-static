@@ -18,14 +18,16 @@
 	</span>
 
 <h1>Website of {{ AUTHOR }}</h1>
+{% for article in dates %}
 
-	{% for article in dates %}
-	<ul class="leaders">
-		<li><span><a href='{{ article.url }}'>{{ article.title }}
-			</a></span>
-			<span>{{ article.locale_date }}</span></li>
-	</ul>
-	{% endfor %}
+<ul class="leaders">
+		<li>
+			<span><a href='{{ article.url }}'>{{ article.title }}</a></span>
+			<span>{{ article.locale_date }}</span>
+			<span>{{ article.summary }}</span>
+		</li>	
+</ul>
+{% endfor %}
 	
 	</div>
 </section>

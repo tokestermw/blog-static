@@ -2,7 +2,7 @@ title: Static blogging using Pelican for quasi-hackers
 date: 2013-07-24
 tags: pelican
 author: Motoki Wu
-summary: Just another Pelican blog and just another Pelican blog tutorial.
+summary: just another Pelican blog and just another Pelican blog tutorial
 
 [Pelican](http://blog.getpelican.com/) was a natural choice for a *quasi-hacker* like me, which I define as people who like to tinker around than rebuilding the wheel from scratch (at least in terms of web dev skills, [stats is another story](http://columbiadatascience.com/2012/12/03/in-defense-of-statistics-or-why-data-scientists-should-make-understanding-statistics-a-priority/)). A static blog generator like Pelican is comfy because it acts as an extension of my workflow. All of my writing, equations and coding are written in text files so it's a breeze to organize them in [Markdown](http://daringfireball.net/projects/markdown/) and [Jinja2](http://jinja.pocoo.org/docs/). I wanted this site to look and act minimalist, so it's nice to have full control and not have to fiddle with databases, server maintenance, security, etc. Hosting is easy, I just have to copy and paste all of the generated files to a hosting service.
 

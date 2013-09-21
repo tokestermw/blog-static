@@ -1,8 +1,8 @@
 title: Data science bootcamp links
 date: 2013-08-03
-tags: bootcamps
+tags: zipfian academy
 author: Motoki Wu
-summary: I will update as more sprouts up.
+summary: it's only a scam if you already know all of the techniques
 
 *Last updated: 2013-08-24*
 
@@ -16,7 +16,7 @@ Please let me know if there are others.
 
 [Zipfian Academy](http://zipfianacademy.com) (San Francisco, CA)
 
-12 intense weeks of data science training from machine learning, data munging to visualization through both group and individual open source projects. Hiring day with SF-Silicon Valley companies. 
+12 intense weeks of data science training from machine learning, data munging to visualization through both group and individual open source projects. Different from other bootcamps in that they teach proper programming and data science practices instead of a one and done project. Hiring day with SF-Silicon Valley companies. 
 
 [Data Science for Social Good](http://dssg.io/) (Chicago, IL)
 
@@ -28,6 +28,6 @@ Doubles as a postdoc to bridge PhD-level knowledge and a career in data science.
 
 [General Assembly - Data Science](https://generalassemb.ly/education/data-science) (San Francisco, CA)
 
-They are more web dev focused but they now have a data science course. Access to [GA Studio](https://generalassemb.ly/studio). 
+They are more web dev focused but they now have a data science course. 
 
 
