@@ -1,0 +1,10 @@
+*.pid
+*.pyc
+*.swp
+*.rtf
+sessions/
+content/drafts/
+pelican-themes/
+src/
+*~
+tokestermw.github.io/

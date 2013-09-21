@@ -50,7 +50,7 @@ MD_EXTENSIONS = ['codehilite(guess_lang=False)']
 
 # https://github.com/bstpierre/pelican-comments
 #PLUGIN_PATH = './pelican-plugins'
-#PLUGINS = ['pelican_comments']
+#PLUGINS = ['code_include']
 #COMMENTS_DIR = ['comments']
 
 DIRECT_TEMPLATES = (['about', 'base', 'index', 'tag', 'tags'])
