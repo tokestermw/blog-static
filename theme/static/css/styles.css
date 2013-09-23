@@ -163,7 +163,7 @@ a:hover{
 }
 
 .pbody li{
-	list-style-type: none;
+	list-style-type: square;
 }
 
 .pbody p code {
@@ -443,14 +443,14 @@ a.extra.navlink.bloglink:before{
 	font-size: 90%;
 }
 
-.pbody ul.leaders {
+ul.leaders {
     max-width: 100%;
 	font-size: 140%;
 	margin-bottom: -1em;
     padding: 0;
     overflow-x: hidden;
     list-style: none}
-.pbody ul.leaders li:before {
+ul.leaders li:before {
     float: left;
     width: 0;
 	list-style: none;	
@@ -460,19 +460,19 @@ a.extra.navlink.bloglink:before{
  ". . . . . . . . . . . . . . . . . . . . "
  ". . . . . . . . . . . . . . . . . . . . "
  ". . . . . . . . . . . . . . . . . . . . "}
-.pbody ul.leaders span:first-child {
+ul.leaders span:first-child {
 	float: left;
 	list-style: none;
     padding-right: 0.33em;
     background: rgb(249, 255, 171);
 }
-.pbody ul.leaders span + span {
+ul.leaders span + span {
     float: right;
  	list-style: none;
     padding-left: 0.33em;
     background: rgb(249, 255, 171);
 }
-.pbody ul.leaders span + span + span {
+ul.leaders span + span + span {
 	float: left;
 	list-style: none;
 	padding-left: 1em;
