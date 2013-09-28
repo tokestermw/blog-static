@@ -47,6 +47,9 @@ Entire code is posted in [bl.ocks](http://bl.ocks.org/tokestermw).
 
 So this example nice, but it's more cosmetic than useful. I'll try a more useful example in the future.
 
+<script type="text/javascript" src="../theme/js/d3/d3.v3.min.js"></script>	
+<script type="text/javascript" src="../theme/js/jstat-1.0.0.min.js"></script>
+
 <script type="text/javascript">
 
 var w = 600;

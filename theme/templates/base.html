@@ -14,10 +14,11 @@
 
 
 	<script language="javascript" src="{{ SITEURL }}/theme/js/email.js"></script>
+	<!-- 
 	<script type="text/javascript" src="{{ SITEURL }}/theme/js/d3/d3.v3.min.js"></script>	
 	<script type="text/javascript" src="{{ SITEURL }}/theme/js/jstat-1.0.0.min.js"></script>
 	<script type="text/javascript" src="{{ SITEURL}}/theme/js/d3/d3.layout.cloud.js"></script>
-	
+	 -->
 	{% block head %}
 	{% endblock %}
 	
@@ -45,8 +46,23 @@
 			{% block content %}{% endblock %}
 </section>
       <div class="footer">
-		  <p> Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>.</p>
+		<!-- I got these buttons from https://github.com/aristath/elusive-iconfont -->
+		<div id="icons">
 
+		<!-- google plus -->
+		<a href="" target="_blank"><img src="{{ SITEURL }}/static/images/icons/googleplus.svg" alt="Google Plus" /></a>
+		<!-- GitHub -->
+		<a href="" target="_blank"><img src="{{ SITEURL }}/static/images/icons/github.svg" alt="GitHub" /></a>
+		<!-- LinkedIn -->
+		<a href="" target="_blank"><img src="{{ SITEURL }}/static/images/icons/linkedin.svg" alt="LinkedIn" /></a>
+		<!-- Twitter -->
+		<a href="" target="_blank"><img src="{{ SITEURL }}/static/images/icons/twitter.svg" alt="Twitter" /></a>
+
+		</div>
+
+	
+	
+		  <p> Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>. Subscribe by <a href="{{ SITEURL }}/feeds/all.rss.xml">RSS</a> or <a href="{{ SITEURL }}/feeds/all.atom.xml">Atom</a>.</p>
       </div>
       
     </div>
