@@ -6,7 +6,7 @@ summary: in all likelihood, they are similar
 status: draft
 
 
-So I tried to formulate some talking points to try and fit into the bootcamp format for the purposes of learning Bayesian statistics^<span class="margin">^ So at least you can use PyMC w/o guilt</span>. Here it goes:
+So I tried to formulate some talking points to try and fit into the bootcamp format for the purposes of learning Bayesian statistics. Here it goes:
 
 1. When we're analyzing data, we are usually interested in ... data.
 2. For data, we create a **model** that we think fits to the data.
