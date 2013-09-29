@@ -3,7 +3,6 @@ date: 2013-09-28
 tags: frequentist, bayesian
 author: Motoki Wu
 summary: in all likelihood, they are similar
-status: draft
 
 I [previously mentioned](http://tokestermw.github.io/posts/zipfian-academy-week-2-log-naive-bayesian-learning.html) that it's hard to learn theory fast. So I tried to formulate some talking points to learn Bayesian statistics that fits into the bootcamp format. Here it goes:
 
