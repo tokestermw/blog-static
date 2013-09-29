@@ -5,8 +5,7 @@ author: Motoki Wu
 summary: in all likelihood, they are similar
 status: draft
 
-
-So I tried to formulate some talking points to try and fit into the bootcamp format for the purposes of learning Bayesian statistics. Here it goes:
+I [previously mentioned](http://tokestermw.github.io/posts/zipfian-academy-week-2-log-naive-bayesian-learning.html) that it's hard to learn theory fast. So I tried to formulate some talking points to learn Bayesian statistics that fits into the bootcamp format. Here it goes:
 
 1. When we're analyzing data, we are usually interested in ... data.
 2. For data, we create a **model** that we think fits to the data.
@@ -36,15 +35,50 @@ So I tried to formulate some talking points to try and fit into the bootcamp for
 		* it's more like: I have constructed an estimator that will cover the chance of rain 95% of the time. 
 10. Therefore, things like hypothesis testing came to being.
 	* We don't really know $\theta$ so let's just assume $\theta = 0$.
-	* Now we can at least compare the estimator with something tangible to at least be able to falsify.
+	* Now we can at least compare the estimator with something tangible so we're able to falsify.
 
-Oops, this was basically **frequentist statistics**.
+Oops, this was basically **frequentist statistics**. Try again:
 
-[WHAT IS BAYESIAN / FREQUENTIST INFERENCE?](http://normaldeviate.wordpress.com/2012/11/17/what-is-bayesianfrequentist-inference/)
+1. When we're analyzing data, we are usually interested in ... parameters.
+2. Start with $p(\theta)$, the **prior** distribution.
+3. We can update the prior by the **data** distribution $p(X | \theta)$.
+4. Arriving at the **posterior** distribution $p(\theta | X)$.
+	* How do we calculate this?
+5. From above, take $p(X|\theta)$ and flip the conditionals using Bayes' Theorem:
+$$ p(\theta|X) = \frac{p(X|\theta)p(\theta)}{\int p(X|\theta)p(\theta) d\theta} $$
+6. So we can estimate by optimizing like before right?
+	* We *can*, but it's usually too complicated.
+	* We also want to express our posterior as a probability distribution.
+	* We cannot just ignore the integral in the denominator.
+7. A probability distribution basically is just something that sums to one: $\int p(X)dX = 1$.
+	* We like this so we can **simulate** from the distribution.
+	* Also like because results are in probabilities.
+8. Just simulating isn't an answer since again, the functional form is too complex.
+	* We know how to simulate from a Normal distribution, but Bayesian models usually are shaped like [NaN](http://ile-maurice.tripod.com/naan.htm).
+9. So we simulate, but we use a smart simulation that traverses the distribution without getting stuck in local optima.
+	* The dumb approach would be to randomly pick numbers on a grid and calculate the function value.
+	* Smarter algorithms use a distribution that we know how to sample from as a basis to simulate from the posterior.
+10. **Estimation** and **integration** of the posterior is done by Markov chain Monte Carlo (MCMC) -- the smart approach.
+11. **Markov Chain**:
+	* A chain of samples from a distribution that is only dependent on the immediate past.
+	* The dependency enables us to traverse the probability distribution smartly.
+	* Only dependent on the past state so we can snip and cut out samples as necessary.
+	* Under certain conditions, markov chains should converge to the posterior.
+	* The samples from the posterior should be independent, just like any other distribution.
+12. **Monte Carlo**:
+	* Monte Carlo integration allows us to calculate integrals using simulations.
+		* So for $M$ simulations from $p(\theta_i)$:
+		$$\int p(X|\theta)p(\theta) d\theta \approx \frac{1}{M}\sum_i p(X|\theta_i)$$
+	* We use the **law of large numbers** to get a bunch of random samples from the posterior that will converge.
+	* Once we have the samples from the converged posterior, we can use **Monte Carlo integration** to calculate test statistics of our liking.
+13. Finally, inference on $\theta$.
+	* If you want to test if the posterior is greater than 0, just do:
+	 	* ```(sum(theta) > 0) / len(theta)```. 
 
+Frequentist methods are easier to set up the model and do the estimation than Bayesian methods. Whereas Bayesian methods are easier to do inference and model checking. 
 
+Sometimes the goals are different. Frequentist methods may be more interested in describing the general properties of the population. Bayesian methods may be more interested in the immediate (ever-changing) dataset. 
 
-A probability distribution (pdf) is basically defined as a function that integrates to one on its domain: $\int p(X|\theta)dX = 1$. 
-This means that we can **sample** from the distribution.
+I managed to not mention likelihood methods until now, but really at its core, both methods are solving the same function.
 
 
