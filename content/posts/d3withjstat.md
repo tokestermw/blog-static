@@ -2,7 +2,7 @@ title: D3 and jstat to visualize statistics
 date: 2013-09-21
 tags: d3, jstat
 author: Motoki Wu
-summary: R functions are oh so comfortable
+summary: R functions are so comfortable
 
 R does plotting statistics, well, D3.js does plotting web-friendly interactive plots well. So I decided to weave [jstat](http://www.jstat.org/) (a Javascript stats library) into D3 to plot R-like objects. One of the things people during data analysis is to plot theoretical distributions to check it against the data. In jstat, you can easily do this by doing a ```dnorm``` (for a normal distribution).
 
