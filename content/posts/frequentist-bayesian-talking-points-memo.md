@@ -4,7 +4,7 @@ tags: frequentist, bayesian
 author: Motoki Wu
 summary: in all likelihood, they are similar
 
-I [previously mentioned](http://tokestermw.github.io/posts/zipfian-academy-week-2-log-naive-bayesian-learning.html) that it's hard to learn theory fast. So I tried to formulate some talking points to learn Bayesian statistics that fits into the bootcamp format. Here it goes:
+I [previously mentioned](http://tokestermw.github.io/posts/zipfian-academy-week-2-log-naive-bayesian-learning.html) that it's hard to learn theory fast. So I attempted to formulate some talking points to learn Bayesian statistics that fits into the bootcamp format. Here it goes:
 
 1. When we're analyzing data, we are usually interested in ... data.
 2. For data, we create a **model** that we think fits to the data.
@@ -74,7 +74,7 @@ $$ p(\theta|X) = \frac{p(X|\theta)p(\theta)}{\int p(X|\theta)p(\theta) d\theta} 
 	* If you want to test if the posterior is greater than 0, just do:
 	 	* ```(sum(theta) > 0) / len(theta)```. 
 
-Frequentist methods are easier to set up the model and do the estimation than Bayesian methods. Whereas Bayesian methods are easier to do inference and model checking. 
+Frequentist methods are easier to set up and run the estimation than Bayesian methods. Whereas Bayesian methods are easier to do inference and model checking. 
 
 Sometimes the goals are different. Frequentist methods may be more interested in describing the general properties of the population. Bayesian methods may be more interested in the immediate (ever-changing) dataset. 
 

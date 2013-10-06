@@ -48,9 +48,16 @@ TAG_CLOUD_MAX_ITEMS = 100
 # Python-Markdown extensions to be included
 MD_EXTENSIONS = ['codehilite(guess_lang=False)']
 
+PLUGIN_PATH = './pelican-plugins'
+# https://github.com/danielfrg/pelican-ipythonnb
+MARKUP = ('md', 'ipynb')
+PLUGINS = ['ipythonnb']
 # https://github.com/bstpierre/pelican-comments
-#PLUGIN_PATH = './pelican-plugins'
-#PLUGINS = ['code_include']
 #COMMENTS_DIR = ['comments']
 
 DIRECT_TEMPLATES = (['about', 'base', 'index', 'tag', 'tags'])
+
+def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
+    return value.strftime(format)
+
+#STATIC_PATHS = ['images', 'posts/compare_models_finished_files']
