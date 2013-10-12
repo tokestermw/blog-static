@@ -3,6 +3,7 @@ date: 2013-10-05
 tags: zipfian academy
 author: Motoki Wu
 summary: San Francisco *is* Silicon Valley
+status: draft
 
 Much of this week was occupied by [DataWeek](http://dataweek.co/). There wasn't much instruction except for the machine learning workshop on Monday. It was supposed to be a mini-bootcamp that the Zipfian fellows and conference attendees would participate in union. But technical problems ensued (we were not going to install [Anaconda](https://store.continuum.io/cshop/anaconda/) and a 150MB dataset to run a few [scikit-learn](http://scikit-learn.org/stable/) models on a paltry WiFi connection in a room of 80 nerds), so it morphed into a long lecture. 
 
