@@ -6,16 +6,17 @@
 
 {% block content %}
 <section id="content">
-<div class="pbody">
+<!-- <div class="pbody"> -->
 
-	<span class="margin">
+<!-- 	<span class="margin">
 		My other links: <br />
 		... <script>mail2("tokestermw", "gmail", 0, "", "email")</script> <br />
 		... <a href="https://plus.google.com/104805673826709213835?rel=author">Google Plus</a> <br />
+		... <a href="https://twitter.com/plusepsilon">Twitter</a> <br />
 		... <a href="https://github.com/tokestermw">GitHub</a> <br />
 		... <a href="http://www.linkedin.com/pub/motoki-wu/64/b96/b11">LinkedIn</a> <br />		
 		... <a href="https://gist.github.com/tokestermw">Gists</a> and <a href="http://bl.ocks.org/tokestermw">bl.ocks</a> <br />	
-	</span>
+	</span> -->
 
 <h1>Website of {{ AUTHOR }}</h1>
 {% for article in dates %}
@@ -23,12 +24,13 @@
 <ul class="leaders">
 		<li>
 			<span><a href='{{ article.url }}'>{{ article.title }}</a></span>
-			<span>{{ article.locale_date }}</span>
+			<span>({{ article.locale_date }}) </span>
 			<span>{{ article.summary }}</span>
 		</li>	
 </ul>
 {% endfor %}
+
 	
-	</div>
+	<!-- </div> -->
 </section>
 {% endblock %}

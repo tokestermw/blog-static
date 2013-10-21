@@ -9,3 +9,7 @@ src/
 *~
 tokestermw.github.io/
 icons/
+distribute_setup.py
+docs/
+output/
+pelican.pdf

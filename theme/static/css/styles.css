@@ -64,13 +64,13 @@ b, strong{
 }
 
 pre{
-	font-family: 'Inconsolata', monospace, courier, "mplus-1m" !important;
+	font-family: "mplus-1m", 'Inconsolata', Consolas, Monaco, Courier New; !important
 	font-weight: 400 !important;
 	font-size: 90%;
 }
 
 code{
-	font-family: "mplus-1m", 'Inconsolata', monospace !important;
+	font-family: "mplus-1m", 'Inconsolata', Consolas, Monaco, Courier New; !important
 	font-weight: 400 !important;
 	font-size: 95%;
 }
@@ -161,11 +161,11 @@ a:hover{
 .pbody p{
 	padding-bottom: .2em;
 	line-height: 1.5em;
-	font-size: 120%;
+	font-size: 100%;
 }
 
 .pbody ul{
-	margin-bottom: .7em;
+	margin-bottom: .3em;
 	margin-right: 10px;
 	padding: 0em 1em;
 }
@@ -187,7 +187,7 @@ a:hover{
 	border: 1px solid rgb(234, 234, 234);
 	background-color: rgb(254, 254, 254);
 	padding: 0px 1px;
-	font-size: 80%;
+	font-size: 100%;
 }
 
 .pbody p pre {
@@ -203,15 +203,24 @@ a:hover{
 }
 
 .pbody img{
-	background-color: rgb(255, 255, 255);
-	border: 1px solid #7C7C7C;
+/*	background-color: rgb(255, 255, 255);/*
+/*	border: 1px solid #7C7C7C;*/
 	padding: 1px;
-	max-width: 98%;
 	display: block;
-	margin: 0px auto;
+/*	margin: 0px auto;*/
+	margin: auto;
 	margin-bottom: 1em;
 	-webkit-box-shadow: 5px 5px 5px #7C7C7C;
 	box-shadow: 5px 5px 5px #7C7C7C;
+	max-height: 380px;
+	max-width:95%;
+	width: auto;
+	height: auto;
+}
+
+.svg img{
+	
+	
 }
 
 .pbody h1{
@@ -320,18 +329,53 @@ h1 .ptitle{
 	font-weight: 200;
 	font-size: 1em;
 }
-
+/*
 blockquote{
 	margin-left: -2%;
-	padding-left: 2%;
+	padding-left: 10%;
 	border-left: 2px solid rgb(4, 149, 181);
 	margin-bottom: 1.7em;
 	color: rgb(90, 90, 90);
+	font-size: 90%;
+	font-style: italic;
 }
 
 blockquote p{
 	margin: 0px !important;
 	padding: 0px !important;
+}
+*/
+blockquote {
+font-family: ubuntu, Georgia, serif;
+font-size: 90%;
+font-style: italic;
+width: 500px;
+margin: 0.25em 0;
+padding: 0.25em 40px;
+line-height: 1.45;
+position: relative;
+color: #383838;
+}
+
+blockquote:before {
+display: block;
+content: "\201C";
+font-size: 40px;
+position: absolute;
+left: 10px;
+/*top: 0px;*/
+color: #7a7a7a;
+}
+
+blockquote cite {
+color: #999999;
+font-size: 90%;
+display: block;
+margin-top: 5px;
+}
+ 
+blockquote cite:before {
+content: "\2014 \2009";
 }
 /*
 pre{
@@ -465,7 +509,7 @@ a.extra.navlink.bloglink:before{
 ul.leaders {
     max-width: 100%;
 	font-size: 140%;
-	margin-bottom: -1em;
+	margin-bottom: 0em;
     padding: 0;
     overflow-x: hidden;
     list-style: none}
@@ -474,28 +518,34 @@ ul.leaders li:before {
     width: 0;
 	list-style: none;	
     white-space: nowrap;
-    content:
- ". . . . . . . . . . . . . . . . . . . . "
- ". . . . . . . . . . . . . . . . . . . . "
- ". . . . . . . . . . . . . . . . . . . . "
- ". . . . . . . . . . . . . . . . . . . . "}
-ul.leaders span:first-child {
+}
+/*    content:
+/* ". . . . . . . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . . . . . . "}
+*/ul.leaders span:first-child {
 	float: left;
 	list-style: none;
+	margin-bottom: -.5em;
     padding-right: 0.33em;
     background: rgb(249, 255, 171);
 }
 ul.leaders span + span {
-    float: right;
  	list-style: none;
+	margin-top: 1em;
+	font-size:60%;
     padding-left: 0.33em;
+	color: rgb(150, 150, 150);
     background: rgb(249, 255, 171);
 }
 ul.leaders span + span + span {
+	clear: left;
 	float: left;
 	list-style: none;
 	padding-left: 1em;
-	font-size:75%;
+	color: rgb(0, 0, 0);
+	font-size:85%;
 	font-style: italic;
 }
 

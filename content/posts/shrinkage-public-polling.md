@@ -1,6 +1,6 @@
 title: bla
 date: 2013-08-23
-tags: shrinkage, politics, r
+tags: shrinkage, politics, r, ggplot2
 author: Motoki Wu
 summary: something witty
 status: draft
