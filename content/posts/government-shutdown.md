@@ -18,7 +18,7 @@ You see a huge bump and decline around April. There was a [debt ceiling suspensi
 
 > U.S. Treasury had used about $31 billion in extraordinary measures. Statutory language that grants the Treasury Secretary the authority to declare a “debt issuance suspension period” (DISP), which permits certain extraordinary measures, also requires that “the Secretary of the Treasury shall immediately issue” amounts to replenish those funds once a debt issuance suspension period (DISP) is over.<cite>[The Debt Limit: History and Recent Increases](http://www.fas.org/sgp/crs/misc/RL31967.pdf)</cite>
 
-So the Treasury needed "extraordinary measures" at pretty much every budget impasse to delay doom as far off as possible. A counter-constraint (if you will) was added so at the end of the debt limit suspension, the "extraordinary measures" account (if there is one) had to be replenished. Therefore, the debt limit was raised by \$300 billion, but immediately Government found themselves only \$25 billion below the limit. Cash balance? \$34 billion.
+So the Treasury needed "extraordinary measures" at pretty much every budget impasse to delay the doomsday as far off as possible. A counter-constraint was added so at the end of the debt limit suspension, the "extraordinary measures" account had to be replenished. Therefore, the debt limit was raised by \$300 billion, but Government immediately found themselves only \$25 billion below the limit. Cash balance? \$34 billion.
 
 What about the bump around June? This is the explanation that the Treasury gives:
 

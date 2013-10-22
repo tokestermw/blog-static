@@ -6,7 +6,7 @@ summary: the first cohort
 
 *This is my weekly diary of my experience at [Zipfian Academy](http://zipfianacademy.com/), a one of a kind data science bootcamp. I will have an ultimate review on this experience once my job search is complete.*
 
-[Week 1](#week1), [Week 2](#week2), [Week 3](#week3), [Week 4](#week4)
+[Week 1](#week1), [Week 2](#week2), [Week 3](#week3), [Week 4](#week4), [Week 5](#week5)
 
 ## <a id="week1"></a>Week 1: you should bring a Mac
 
@@ -75,4 +75,49 @@ This week was surely the hardest of the weeks, as more and more difficult concep
 [Ryan](https://twitter.com/ryanorban) blazed through some exciting developments in big data computing. Traditionally, an abstraction layer like (SQL-ish Hive to more functional Pig) on top of Hadoop MapReduce. Directly accessing the Hadoop shell is of course possible, but generally not recommended for more complicated task (Java is not dynamic enough). Hadoop is well-tested for distributed computing and easy to speed up big computations linearly (just add rackunits). But [there are shortcomings](http://gigaom.com/2012/07/07/why-the-days-are-numbered-for-hadoop-as-we-know-it/) like constantly saving data to HDFS and being limited to MapReduce. There is tremendous competition to provide a better interface to Hadoop ([Dremel and Impala](http://www.quora.com/Cloudera-Impala/How-does-Clouderas-Impala-compare-to-Googles-Dremel)) or to provide a realtime processing alternative ([Spark](http://spark.incubator.apache.org/)).
 
 Speaking of big data, the data science analytics team at Facebook came to Zipfian and talk to us about what goes on at Facebook. Facebook is currently hiring data scientists like crazy (ten a month). They are now at 90 data scientists but they say that due to the nature of the (petabyte-level social network) data, only small teams are working on each problem (graph search was supposedly one data scientist plus some engineers). All of the data engineering crap is taken care of, which is something to keep in mind for people who want to work mainly in analytics.
+
+## <a id="week5"></a>Week 5: 
+
+### Techniques learned: scikit-learn, Flask, Amazon EC2, ggplot2
+
+### Topics covered: hierarchical clustering, k-means clustering, non-matrix factorization, grammar of graphics, RESTful web API
+
+This week, we coded up unsupervised learning algorithms. We compared them against scikit-learn implementations and were shocked at how slow our implementations were. Slow is one thing (not enough FORTRAN), but scikit-learn separates the vectorization, model formulation and fitting. Along with duck typing, this creates very readable code. 
+
+For example, here are the steps to calculate the multinomial Naive Bayes classifier (ignoring the prior):
+
+1. Count the number of each feature with a label.
+2. Divide 1. with the number of total features within a label.
+3. Sum the log of each of these probabilities.
+4. Get the arg max for the classification.
+
+How I naively code up these steps is to serialize the code. I will have code for each step, and will run it one by one. I might construct a class and call a method at each step. If I want to run another model, fit a different vectorizer, even a random forests algorithm, the code length will just blow up. 
+	
+Alternatively, a minimal scikit-learn process would look like this:
+
+	:::python
+	## load data
+	data = json.load(open("articles_html1000.json"))
+	labels = map(lambda x: x['section_name'], data)
+
+	## set vectorizer and count each word (feature)
+	vectorizer = feature_extraction.text.CountVectorizer(min_df = 1)
+	X = vectorizer.fit_transform(data)
+
+	## set and fit model
+	model = naive_bayes.MultinomialNB()
+	model.fit(X, labels)
+	
+Not only does is it clear what we're doing, it is easy to swap out models, vectorizations and / or prediction methods. Including new data is seamless as you can insert them into the same vectorizer while predicting with the same model and model fit. 
+
+	:::python
+	## new data
+	x_new = vectorizer.transform(newdata)
+	model.predict(x_new)[0]
+
+Cross-validation is built-in, and model checking is very fast. In R, you'll most likely have different packages with disparate syntax making it hard to do model comparison.
+
+<b>Refs</b>
+
+1. [API design for machine learning software: experiences from the scikit-learn project](http://arxiv.org/abs/1309.0238)
 
