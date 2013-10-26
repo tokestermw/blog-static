@@ -6,7 +6,12 @@ summary: the first cohort
 
 *This is my weekly diary of my experience at [Zipfian Academy](http://zipfianacademy.com/), a one of a kind data science bootcamp. I will have an ultimate review on this experience once my job search is complete.*
 
-[Week 1](#week1), [Week 2](#week2), [Week 3](#week3), [Week 4](#week4), [Week 5](#week5), [Week 6](#week6)
+* [Week 1:](#week1) you should bring a Mac 
+* [Week 2:](#week2) naive Bayesian learning
+* [Week 3:](#week3) San Francisco is Silicon Valley
+* [Week 4:](#week4) Hadoop makes easy problems hard, hard problems possible, while SQL is just a PITA
+* [Week 5:](#week5) how to write bad code
+* [Week 6:](#week6) finish your project, even if it stinks
 
 ## <a id="week1"></a>Week 1: you should bring a Mac
 
@@ -76,7 +81,7 @@ This week was surely the hardest of the weeks, as more and more difficult concep
 
 Speaking of big data, the data science analytics team at Facebook came to Zipfian and talk to us about what goes on at Facebook. Facebook is currently hiring data scientists like crazy (ten a month). They are now at 90 data scientists but they say that due to the nature of the (petabyte-level social network) data, only small teams are working on each problem (graph search was supposedly one data scientist plus some engineers). All of the data engineering crap is taken care of, which is something to keep in mind for people who want to work mainly in analytics.
 
-## <a id="week5"></a>Week 5: 
+## <a id="week5"></a>Week 5: how to write bad code
 
 ### Techniques learned: scikit-learn, Flask, Amazon EC2, ggplot2
 
@@ -91,7 +96,7 @@ For example, here are the steps to calculate the multinomial Naive Bayes classif
 3. Sum the log of each of these probabilities.
 4. Get the arg max for the classification.
 
-How I naively code up these steps is to serialize the code. I will have code for each step, and will run it one by one. I might construct a class and call a method at each step. If I want to run another model, fit a different vectorizer, even a random forests algorithm, the code length will just blow up. 
+How I would naively code up these steps is to serialize the code. I will have code for each step, and will run it one by one. I might construct a class and call a method at each step. If I want to run another model, fit a different vectorizer, even a random forests algorithm, the code length will just blow up. 
 	
 Alternatively, a minimal scikit-learn process would look like this:
 
@@ -115,16 +120,33 @@ Not only does is it clear what we're doing, it is easy to swap out models, vecto
 	x_new = vectorizer.transform(newdata)
 	model.predict(x_new)[0]
 
-Cross-validation is built-in, and model checking is very fast. In R, you'll most likely have different packages with disparate syntax making it hard to do model comparison.
+Cross-validation is built-in, and model checking is very fast. All scikit-learn models follow the same basic API, and its seamless transition between methods make it the go-to library of choice. In R, you'll most likely have different packages with incompatible syntax making it hard to do model comparison.
 
-<b>Refs</b>
-
-1. [API design for machine learning software: experiences from the scikit-learn project](http://arxiv.org/abs/1309.0238)
-
-## <a id="week6"></a>Week 6: 
+## <a id="week6"></a>Week 6: finish your project, even if it stinks
 
 ### Techniques learned: more scikit-learn, D3
 
-### Topics covered: decision trees, random forests, gradient descent, linear regression, DOM
+### Topics covered: decision trees, random forests, gradient descent, linear regression, DOM, data science pipeline
 
-projects
+This week we covered more machine learning topics following this general strategy: 1) code up from scratch a relatively simple machine learning algorithm that is a basis for more complicated methods, 2) use the complicated methods already optimized in scikit-learn to get a good feel on real data, 3) read up on theory.
+
+I would say the ratio of time spent on these three steps would be:
+
+<center> **code: 6, feel: 3, theory: 1** </center>
+
+In academia, it's more like:
+
+<center> **theory: 8, feel: 1, code 1** </center>
+
+**The Data Science Pipeline**
+
+We've had an increase in guest lectures that spoke about their expertise. We've had a [freelance astrophysicist](http://freelanceastrophysicist.com/) talk about D3 and interactive visualizations, a [data scientist from EventBrite](http://www.kaggle.com/users/44623/paul-duan) talk about random forests and fraud modeling, and the founder of [BioNetbook](http://www.bionetbook.com/) talk about data products and balancing rigor and product delivery. This last talk I'd like to write a bit on..
+
+There is a large difference between the project workflow between academia and doing data science in industry. In academia (especially for your first paper), you form a hypothesis, do extensive literature research and understanding anything peripherally related, develop a novel method that can be applied to a fairly simple problem and write up a paper with a thousand qualifiers. In data science, the hypothesis is generally set, so you hack a preexisting method together that analyzes a real, noisy dataset, and you communicate your insights that are immediately usable.<span class="margin">A D3 viz could be your "paper."</span>
+
+If academia is where you spend 4 years to take a project to 98% completion, data science is where you spend 4 weeks to take a project to 60% completion. What I mean by 60% is, 60% of what you *potentially* can do if given infinite time; but you still take the project to full completion. Even with 60% rigor, clients can still derive valuable insights that is beneficial for their business. So how do you avoid broad swipes at your quality of work from famous figures?
+
+> Data Science is statistics on a Mac. <cite>[Big Data Borat](https://twitter.com/BigDataBorat/status/372350993255518208)</cite>
+
+<span class="margin">Though I would argue that Macs are far better machines for data science than Windows (I mean, it's not a long stretch to say that everybody in the data science community uses a Mac).</span>It's very important for data science projects and code to be sustainable. If your project is only 60% rigor, there has to be a way to extend the project to 90% rigor. At the end of telling your story and pitching your analysis, you can talk about follow-ups. Ideally, there will be a framework so capable non-experts can extend the analysis. Here, web apps help tremendously because it sorts out what's important. If your studying Twitter sentiment trends on the [#BARTstrike](https://twitter.com/search?q=%23BARTstrike&src=hash), the first go around of your data science pipeline may have deemed geographic analysis as a rabbit hole. If the client is interested in that type of analysis, you can go through the process again. Eventually, you'll reach 90% rigor while matching the business cycle. 
+

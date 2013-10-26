@@ -14,7 +14,6 @@
     </div>
 		
 	<span class="margin">
-	<small>
 		{{ AUTHOR }} (<script>mail2("tokestermw", "gmail", 0, "", "email")</script>)<br />
 		<!-- <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread">Comments</a>-->
 		<a href="https://twitter.com/plusepsilon">@plusepsilon</a><br />
@@ -24,7 +23,7 @@
 			<a href="{{ SITEURL }}/tag/{{ tag|replace(' ', '-') }}.html">&#35;{{ tag }}</a>
 			{% if not loop.last %}, 
 			{% endif %}{% endfor %}{% endif %}
-			</span></small></span>
+			</span></span>
         <div class="entry-content"><div class="pbody">
 	
         {{ article.content }}

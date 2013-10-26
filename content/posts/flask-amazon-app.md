@@ -28,7 +28,7 @@ Some notes on the code.
 3. In my [Jinja2 template](http://jinja.pocoo.org/docs/) file, I have a for loop that loops over ```OUTPUT``` to show the results of the model.
 4. I changed the ```logging.basicConfig``` to stream Python errors instead of the GET and POST requests.
 5. ```run_model()``` loads the fitted model, gets the new text and label, then predicts.
-6. I turn ```app.debug``` false and ```host='0.0.0.0'``` when hosting it on Amazon. 
+6. I turn ```app.debug``` false and set ```host='0.0.0.0'``` when hosting it on Amazon. 
 
 I also use [screen](http://kb.iu.edu/data/acuy.html) to have the app constantly running. 
 
@@ -87,4 +87,4 @@ I also use [screen](http://kb.iu.edu/data/acuy.html) to have the app constantly 
 	# for amazon
 	# app.run(host='0.0.0.0', port=10080)
 
-This is only one of many different ways to set up an app. You can easily swap out different classifiers, corpora or performance metric. A different app can take single or multiple NYT articles, or even non-NYT article text. It can perform different cross-validation a priori and let the user pick various tuned classifiers from a drop down menu. More sophisticated apps may include ensemble estimates and visualizations of performance statistics. 
+This was basically one day's worth of work, but it's only one of many different ways to set up an app. You can easily swap out different classifiers, corpora or performance metric. A different app can take single or multiple NYT articles, or even non-NYT article text. It can perform different cross-validation a priori and let the user pick various tuned classifiers from a drop down menu. More sophisticated apps may include ensemble estimates and visualizations of performance statistics. 

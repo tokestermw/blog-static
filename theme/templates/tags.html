@@ -37,7 +37,7 @@ class="active"
 	  var jwords = [{% for tag, articles in tags %}"{{ tag }}", {% endfor %}""];
 	  var jcounts = [{% for tag, articles in tags %}{{ articles|count }},{% endfor %} 0];
 
-	  d3.layout.cloud().size([480, 480])
+	  d3.layout.cloud().size([800, 500])
 	      .words(d3.zip(jwords, jcounts).map(function(d) {
 	        return {text: d[0], size: +d[1] * 20};
 	      }))
@@ -50,8 +50,8 @@ class="active"
 
 	  function draw(words) {
 	    d3.select("#d3").append("svg")
-	        .attr("width", 480)
-	        .attr("height", 480)
+	        .attr("width", 800)
+	        .attr("height", 500)
 	      .append("g")
 	        .attr("transform", "translate(150,150)")
 	      .selectAll("text")
