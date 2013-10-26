@@ -6,7 +6,7 @@ summary: the first cohort
 
 *This is my weekly diary of my experience at [Zipfian Academy](http://zipfianacademy.com/), a one of a kind data science bootcamp. I will have an ultimate review on this experience once my job search is complete.*
 
-[Week 1](#week1), [Week 2](#week2), [Week 3](#week3), [Week 4](#week4), [Week 5](#week5)
+[Week 1](#week1), [Week 2](#week2), [Week 3](#week3), [Week 4](#week4), [Week 5](#week5), [Week 6](#week6)
 
 ## <a id="week1"></a>Week 1: you should bring a Mac
 
@@ -121,3 +121,10 @@ Cross-validation is built-in, and model checking is very fast. In R, you'll most
 
 1. [API design for machine learning software: experiences from the scikit-learn project](http://arxiv.org/abs/1309.0238)
 
+## <a id="week6"></a>Week 6: 
+
+### Techniques learned: more scikit-learn, D3
+
+### Topics covered: decision trees, random forests, gradient descent, linear regression, DOM
+
+projects
