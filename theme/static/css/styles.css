@@ -91,7 +91,7 @@ body{
 	height:100%;
 	margin: 0px auto;
 	padding: 20px;
-	font-size: 1.3em;
+	font-size: 1.5em;
 	width: 800px;
 	position: relative;
 }
@@ -421,7 +421,7 @@ div .tagcol {
 }
 
 .siteinfos .thl{
-	font-size: 2em;
+	font-size: 1.8em;
 	font-weight: 600;
 	font-family: flavors;
 }

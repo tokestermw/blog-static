@@ -13,7 +13,7 @@ So I created a fairly simple [Flask app](http://flask.pocoo.org/docs/api/) that 
 3. Fit a Naive Bayes Classifier that predicts the label using new text.
 4. Use Flask to let users explore model results by inserting a NYT URL on [Amazon EC2](http://aws.amazon.com/console/). 
 
-You can check out the app at either of the links. Enter a valid NYT URL and it will figure out the label (i.e. the real category) by tokenizing the HTML and it predicts the label using only the text. The model is already fit and pickled, so I just have to upload it.
+You can check out the app at either of the links. Enter a valid NYT URL and it will figure out the label (i.e. the real category) by tokenizing the HTML and it predicts the label using only the text. The model is already fit and pickled, so the code just uploads it.
 
 ![test amazon](|filename|/images/test-amazon-nyt.png)
 
