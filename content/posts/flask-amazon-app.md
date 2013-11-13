@@ -17,7 +17,7 @@ You can check out the app at either of the links. Enter a valid NYT URL and it w
 
 ![test amazon](|filename|/images/test-amazon-nyt.png)
 
-[http://ec2-54-200-81-28.us-west-2.compute.amazonaws.com:10080/](http://ec2-54-200-81-28.us-west-2.compute.amazonaws.com:10080/)
+<span class="margin"> Realized this is not free so I will move it elsewhere! </span>[http://ec2-54-200-81-28.us-west-2.compute.amazonaws.com:10080/](http://ec2-54-200-81-28.us-west-2.compute.amazonaws.com:10080/)
 
 [http://ubuntu@54.200.81.28:10080](http://ubuntu@54.200.81.28:10080)
 

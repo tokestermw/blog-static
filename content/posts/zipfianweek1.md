@@ -3,6 +3,7 @@ date: 2013-09-22
 tags: zipfian academy
 author: Motoki Wu
 summary: the first cohort
+status: draft
 
 *This is my weekly diary of my experience at [Zipfian Academy](http://zipfianacademy.com/), a one of a kind data science bootcamp. I will have an ultimate review on this experience once my job search is complete.*
 

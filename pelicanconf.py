@@ -33,7 +33,7 @@ ARTICLE_DIR = 'posts'
 ARTICLE_SAVE_AS = 'posts/{slug}.html'
 ARTICLE_URL = 'posts/{slug}.html'
 
-DISQUS_SITENAME = "mowu"
+#DISQUS_SITENAME = "mowu"
 
 FEED_DOMAIN = SITEURL
 FEED_ATOM = 'feeds/all.atom.xml'
