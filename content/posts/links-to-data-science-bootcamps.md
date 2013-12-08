@@ -30,6 +30,6 @@ Doubles as a short postdoc to bridge PhD-level knowledge and a career in data sc
 
 I don't know much about this program but they They are more web dev focused but they now have a data science course. 
 
+[Data Science Retreat](http://datascienceretreat.com/)
 
-
-
+Looks to be very similar to Zipfian except in Germany!

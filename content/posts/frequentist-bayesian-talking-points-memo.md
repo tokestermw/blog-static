@@ -74,7 +74,10 @@ $$ p(\theta|X) = \frac{p(X|\theta)p(\theta)}{\int p(X|\theta)p(\theta) d\theta} 
 	* If you want to test if the posterior is greater than 0, just do:
 	 	* ```(sum(theta) > 0) / len(theta)```. 
 
-Frequentist methods are easier to set up and run the estimation than Bayesian methods. Whereas Bayesian methods are easier to do inference and model checking. 
+My two cents:
+
+- Frequentist methods are easier to set up and run the estimation than Bayesian methods. 
+- Bayesian methods are easier to do inference and model checking. 
 
 Sometimes the goals are different. Frequentist methods may be more interested in describing the general properties of the population. Bayesian methods may be more interested in the immediate (ever-changing) dataset. 
 
