@@ -3,6 +3,7 @@ date: 2013-12-07
 tags: python, yelp, mongodb, random forests
 author: Motoki Wu
 summary: for a job
+status: draft
 
 Yelp has a [dataset challenge](http://www.yelp.com/dataset_challenge/) that anyone can enter. I was given some questions to explore the dataset for an interview and wanted me to have a blog post. 
 
