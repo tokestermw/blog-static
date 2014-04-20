@@ -51,7 +51,7 @@ MD_EXTENSIONS = ['codehilite(guess_lang=False)']
 PLUGIN_PATH = './pelican-plugins'
 # https://github.com/danielfrg/pelican-ipythonnb
 MARKUP = ('md', 'ipynb')
-PLUGINS = ['ipythonnb']
+#PLUGINS = ['ipythonnb']
 # https://github.com/bstpierre/pelican-comments
 #COMMENTS_DIR = ['comments']
 
