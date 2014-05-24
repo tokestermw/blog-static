@@ -14,7 +14,7 @@ TIMEZONE = 'America/Los_Angeles'
 
 DEFAULT_LANG = 'en'
 
-FILES_TO_COPY = (('extra/.htaccess', '.htaccess'), ('extra/robots.txt', 'robots.txt'),)
+EXTRA_PATH_METADATA = {'extra/.htaccess': {'path':'.htaccess'}, 'extra/robots.txt': {'path': 'robots.txt'}}
 
 # Blogroll
 LINKS =  (('Pelican', 'http://docs.notmyidea.org/alexis/pelican/'),
@@ -36,8 +36,8 @@ ARTICLE_URL = 'posts/{slug}.html'
 #DISQUS_SITENAME = "mowu"
 
 FEED_DOMAIN = SITEURL
-FEED_ATOM = 'feeds/all.atom.xml'
-FEED_RSS = 'feeds/all.rss.xml'
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
+FEED_ALL_RSS = 'feeds/all.rss.xml'
 
 TAG_FEED_ATOM = 'feeds/tag_%s.atom.xml'
 TAG_FEED_RSS = 'feeds/tag_%s.rss.xml'
@@ -48,10 +48,10 @@ TAG_CLOUD_MAX_ITEMS = 100
 # Python-Markdown extensions to be included
 MD_EXTENSIONS = ['codehilite(guess_lang=False)']
 
-PLUGIN_PATH = './pelican-plugins'
+PLUGIN_PATH = './plugins'
 # https://github.com/danielfrg/pelican-ipythonnb
 MARKUP = ('md', 'ipynb')
-#PLUGINS = ['ipythonnb']
+PLUGINS = ['ipythonnb']
 # https://github.com/bstpierre/pelican-comments
 #COMMENTS_DIR = ['comments']
 
@@ -60,4 +60,4 @@ DIRECT_TEMPLATES = (['about', 'base', 'index', 'tag', 'tags'])
 def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
     return value.strftime(format)
 
-#STATIC_PATHS = ['images', 'posts/compare_models_finished_files']
+STATIC_PATHS = ['images', 'posts/compare_models_finished_files']
