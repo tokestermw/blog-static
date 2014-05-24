@@ -36,13 +36,13 @@
 }
 
 html {
-	font-size: 62.5%;
-	text-align: left;
-	margin: 0px auto;
-	padding: 0px;
-/*	background-color: #FCF5BB;*/
-	background-color: rgb(249, 255, 171);
-    overflow-y: scroll;
+	/* font-size: 62.5%; */
+	text-align: left; 
+/* 	margin: 0px auto; */
+/* 	padding: 0px; */
+/* /\*	background-color: #FCF5BB;*\/ */
+ 	background-color: rgb(249, 255, 171);
+     overflow-y: scroll; 
 /*    background-image:url("../theme/images/xray2.png");
     background-repeat:no-repeat;
 	background-position: left top;
@@ -88,10 +88,11 @@ body{
 	font-family: "Helvetica Neue", minion, "museo-sans", 'Droid Serif', sans-serif !important;
  */
 /*	color: #0f0f0f;*/
+	background-color: rgb(249, 255, 171);
 	height:100%;
 	margin: 0px auto;
 	padding: 20px;
-	font-size: 1.5em;
+	font-size: 100%;
 	width: 800px;
 	position: relative;
 }
@@ -102,7 +103,7 @@ body{
 }
 
 .content{
-	padding: 60px 0px 0px;
+	padding: 00px 0px 0px;
 	color: rgb(20, 20, 20);
 }
 
@@ -112,7 +113,7 @@ body{
 
 .content h1 {
     font-weight:400;
-    font-size: 1.5em;
+    font-size: 1.9em;
 	color: black;	
 }
 
@@ -158,18 +159,21 @@ a:hover{
 	width: 75%;
 	margin-right: 25%;
 	font-weight: 300;
+	font-family: ubuntu, "Helvetica Neue", Helvetica;
 }
 
 .pbody p{
 	padding-bottom: .2em;
 	line-height: 1.5em;
 	font-size: 100%;
+	font-family: ubuntu, "Helvetica Neue", Helvetica;
 }
 
 .pbody ul{
 	margin-bottom: .3em;
 	margin-right: 10px;
 	padding: 0em 1em;
+	font-family: ubuntu, "Helvetica Neue", Helvetica;
 }
 
 /*.pbody ol{
@@ -180,6 +184,7 @@ a:hover{
 */
 .pbody ul li{
 	list-style-type: none;
+	font-family: ubuntu, "Helvetica Neue", Helvetica;
 }
 
 .pbody p code {
@@ -189,7 +194,8 @@ a:hover{
 	border: 1px solid rgb(234, 234, 234);
 	background-color: rgb(254, 254, 254);
 	padding: 0px 1px;
-	font-size: 100%;
+	font-size: 1em;
+	font-family: 'Inconsolata', monospace, courier, "mplus-1m" !important;
 }
 
 .pbody p pre {
@@ -199,9 +205,9 @@ a:hover{
 	border: 1px solid rgb(234, 234, 234);
 	background-color: rgb(254, 254, 254);
 	padding: 0px 1px;
-    font-family: 'Inconsolata', monospace, courier, "mplus-1m" !important;
+	font-family: 'Inconsolata', monospace, courier, "mplus-1m" !important;
 	padding-left: 2%;
-	font-size: 90%;
+	font-size: .9em;
 }
 
 .pbody img{
@@ -255,7 +261,7 @@ h1 .ptitle{
 
 .precontent{
 	width: 100%;
-	height: 80px;
+	height: 0px;
 	font-size: 1.2em;
 	font-variant: small-caps;
 	text-transform: lowercase;
@@ -330,7 +336,7 @@ h1 .ptitle{
 
 #page-navigation{
 	margin-top: 1em;
-	margin-bottom: 1.8em;
+	margin-bottom: 0em;
 	padding-top: 10px;
 	border-top: 1px dotted rgba(0, 0, 0, 0.2);
 	font-weight: 200;
@@ -525,7 +531,7 @@ ul.leaders {
     max-width: 100%;
 	font-size: 140%;
 	margin-bottom: 0em;
-    padding: 0;
+    padding: 5px 0px;
     overflow-x: hidden;
     list-style: none}
 ul.leaders li:before {
@@ -581,3 +587,5 @@ border-radius:5px;
 border:1px solid #d2d2d2;
 box-shadow:inset #fff 0 1px 0, inset rgba(0,0,0,0.03) 0 -1px 0;
 width:270px;*/
+
+
