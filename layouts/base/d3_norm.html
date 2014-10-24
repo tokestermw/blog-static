@@ -1,0 +1,85 @@
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://raw.githubusercontent.com/jstat/jstat/master/dist/jstat.min.js"></script>
+
+
+<script type="text/javascript">
+
+var w = 200;
+var h = 100;
+
+var svg = d3.select("#d3")
+        .attr("text-align", "center")
+        .attr("width", 210)
+        .attr("height", 110)
+	.append("svg")
+        .attr("width", w)
+	.attr("height", h);
+
+var xscale = d3.scale.linear()
+	.domain([-3, 3])
+	.range([0, w]);
+
+var yscale = d3.scale.linear()
+	.domain([0, .5])
+	.range([h, 0]);
+
+var range = jStat(jStat.seq(-5,5,100));
+var densities = range.normal(0.0,1.0).pdf()
+
+var dataset = [], zerodata = [];
+for (var i = 0; i < range[0].length; i++) {
+	dataset.push([range[0][i], densities[0][i]]);
+	zerodata.push([0, 0]);
+}
+
+var pdfArea = d3.svg.area()
+	.x(function(d) { return xscale(d[0]) })
+	.y1(function(d) { return yscale(d[1]) })
+	.y0(h)
+	.interpolate("basis");
+
+var pdfLine = d3.svg.line()
+	.x(function(d) { return xscale(d[0])})
+	.y(function(d) { return yscale(d[1])})
+	.interpolate("basis");
+
+// svg.append("line")
+// 	.attr("x1", xscale(d3.min(range)))
+// 	.attr("x2", xscale(d3.max(range)))
+// 	.attr("y1", h).attr("y2", h)
+// 	.attr("stroke-width", 5).attr("stroke", "black");
+
+svg.append("text")
+	.attr("dx", 10).attr("dy", 10)
+	.attr("width", 30).attr("height", 30)
+	.text("");
+
+svg.append("path")
+	.attr("d", pdfArea(zerodata))
+	.attr("fill", "green")
+	.transition().delay(500).duration(1000)
+	.attr("d", pdfArea(dataset))
+	.attr("fill", d3.rgb(255, 124, 138));
+
+svg.on("click", function() {
+	newmean = Math.random() * 6 - 3;
+	newden = range.normal(newmean,1.0).pdf()
+	var newdata = [];
+	for (var i = 0; i < range[0].length; i++) {
+		newdata.push([range[0][i], newden[0][i]]);
+	}
+	svg.select("path")
+		.attr("d", pdfArea(zerodata))
+		.attr("fill", "pink")
+		.transition().delay(500).duration(1000)
+		.attr("d", pdfArea(newdata))
+		.attr("fill", d3.rgb(255, 124, 138));
+})
+
+svg.append("path")
+	.attr("d", pdfLine(dataset))
+	.attr("stroke", "black")
+	.attr("stroke-width", 3)
+	.attr("fill", "none");
+
+</script>

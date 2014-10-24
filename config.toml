@@ -1,0 +1,27 @@
+baseurl = "http://tokestermw.github.io"
+languageCode = "en-us"
+title = "Motoki Wu"
+
+[params]
+Description = "Data Science Unchained and Iterable."
+
+[[menu.main]]
+    name = "Twitter"
+    pre = "<i class='fa fa-download'></i>"
+    url = "https://twitter.com/plusepsilon"
+    weight = -200
+[[menu.main]]
+    name = "LinkedIn"
+    pre = "<i class='fa fa-download'></i>"
+    url = "https://www.linkedin.com/in/motokiwu"
+    weight = -50
+[[menu.main]]
+    name = "Google Plus"
+    pre = "<i class='fa fa-download'></i>"
+    url = "https://plus.google.com/104805673826709213835?rel=author"
+    weight = -20
+[[menu.main]]
+    name = "GitHub"
+    pre = "<i class='fa fa-download'></i>"
+    url = "https://github.com/tokestermw"
+    weight = -150
