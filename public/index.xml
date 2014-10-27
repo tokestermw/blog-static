@@ -3,18 +3,145 @@
   <channel>
       <title>Recent Content on Motoki Wu </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/index.xml</link>
+    <link>http://tokestermw.github.io/index.xml</link>
     <language>en-us</language>
     
     
-    <updated>Tue, 29 Jul 2014 00:00:00 UTC</updated>
+    <updated>Sun, 26 Oct 2014 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Visualization of Topic Models</title>
+      <link>http://tokestermw.github.io/posts/topicmodel-viz</link>
+      <pubDate>Sun, 26 Oct 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://tokestermw.github.io/posts/topicmodel-viz</guid>
+      <description>
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;Lies, damned lies and topic modeling.&lt;/p&gt;&amp;mdash; Motoki Wu (@plusepsilon) &lt;a href=&#34;https://twitter.com/plusepsilon/status/526464306754240513&#34;&gt;October 26, 2014&lt;/a&gt;&lt;/blockquote&gt; &lt;/p&gt;
+
+&lt;p&gt;There is still much work to do in interpreting and visualizing topic model word clusters so some tangible results can be derived in a research setting or something useful comes out in a production app. A cluster of words are likely to be noisy and illegible so I will be exploring a few options presented &lt;a href=&#34;http://tedunderwood.com/2012/11/11/visualizing-topic-models/&#34;&gt;here&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/Ted_Underwood&#34;&gt;@Ted_Underwood&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I took some Twitter data from &lt;a href=&#34;http://oaklandwiki.org/2013_BART_Strikes?&amp;amp;redirected_from=july%201st%202013%20strike&#34;&gt;last year&amp;rsquo;s BART strike&lt;/a&gt; used in a previous &lt;a href=&#34;http://nbviewer.ipython.org/github/tokestermw/twitter-bart/blob/master/ipynb/Twitter140-checkNB.ipynb&#34;&gt;IPython notebook&lt;/a&gt;. This data contains the following chain of events:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;strike announced that stops all trains from going from Bay Area suburbs to San Francisco&lt;/li&gt;
+&lt;li&gt;a week of stand off when two BART workers were killed in an accident&lt;/li&gt;
+&lt;li&gt;end of strike&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The hope is that topic modeling can give indication of the above three discrete events. It would be even better if it can identify pro- and anti-strike tweeets as well.&lt;/p&gt;
+
+&lt;p&gt;The topic model is a standard &lt;a href=&#34;http://en.wikipedia.org/wiki/Latent_Dirichlet_allocation&#34;&gt;Latent Dirichlet Allocation&lt;/a&gt; fitted using &lt;a href=&#34;http://radimrehurek.com/gensim/&#34;&gt;gensim&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/tokestermw/3588e6fbbb2f03f89798&#34;&gt;Full code&lt;/a&gt; in a Gist.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_0&#34;&gt;List of Words&lt;/h3&gt;
+
+&lt;p&gt;Not really a visualization, but the easiest thing to do is to grab the top words of each topic and list them. Here is a sample:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Top 10 terms for topic #0: expected, rep, announces, over, looks, ktvu, want, like, guys, will
+Top 10 terms for topic #1: sfgate, gridlock, normal, happy, head, real, ferries, over, runs, exactly
+Top 10 terms for topic #2: a.m., another, vote, members, other, reason, let, pass, ser…, major
+Top 10 terms for topic #3: today, killed, sanfranmag, hopes, ave, expect, delays, running, home, train
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Topic 3 is most likely grouping tweets about the BART workers that were killed and to expect delays because of the incident. Topic 2 looks like union members throwing a strike are voting on .. something. Topic 1 is talking about ferries (the only other way of getting to San Francisco aside from driving) but it is not clear what these tweets are happy about. Topic 0 is looks to be random.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_1&#34;&gt;Word clouds&lt;/h3&gt;
+
+&lt;p&gt;Word clouds is a simple alternative to looking at the same data. By embiggening the most distinct words, it is easier find import words with a quick scan.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/terms1.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Quan is a mayor of Oakland, and this topic seems to say that the deal is about to be reached.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_2&#34;&gt;PCA&lt;/h3&gt;
+
+&lt;p&gt;It gets progressively more difficult to distinguish chaff from the signal as the number of topics increase. Reducing the topics is sometimes not an option because the topics get too general. It also becomes more difficult to automate the results so a person that haven&amp;rsquo;t been looking at topic clusers for hours on end can understand.&lt;/p&gt;
+
+&lt;p&gt;PCA is a canonical way of reducing dimensions and it is a method that can of course be used here as well. Taking the probabities of each word for each topic, PCA can collapse the data into 2 dimensions. This makes it easily plottable.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/pca_topic.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Interesting how topci 19, 21 and to a some extent, 31 deviates from the other topics (I used 40 topics). Looking athe innards of each topic, all three seems to be talking about the end of the strike.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [231]: lda.show_topic(19)
+Out[231]:
+[(0.18418766385173357, u&#39;tuesday&#39;),
+(0.10941284772798156, u&#39;over&#39;),
+(0.074073551230934093, u&#39;deal&#39;),
+(0.057823820985690839, u&#39;reached&#39;),
+(0.040004840107066328, u&#39;start&#39;),
+(0.014618710538754369, u&#39;chrisfilippi&#39;),
+(0.01175792963040383, u&#39;commute&#39;),
+(0.010096535268990677, u&#39;buses&#39;),
+(0.0099316408990382157, u&#39;abc7newsbayarea&#39;),
+(0.0089298280179637094, u&#39;late&#39;)]
+
+In [232]: lda.show_topic(21)
+Out[232]:
+[(0.19463842681026511, u&#39;over&#39;),
+(0.039005911200223162, u&#39;rosenbergmerc&#39;),
+(0.034922463036658115, u&#39;all&#39;),
+(0.029778810358060626, u&#39;thank&#39;),
+(0.018876961986207651, u&#39;unions&#39;),
+(0.018656417067857364, u&#39;hopefully&#39;),
+(0.016893084271683283, u&#39;pissed&#39;),
+(0.013589706807636848, u&#39;someone&#39;),
+(0.012154548491692339, u&#39;per&#39;),
+(0.011787301022370321, u&#39;kron4news&#39;)]
+
+In [233]: lda.show_topic(31)
+Out[233]:
+[(0.073542501022656165, u&#39;tentative&#39;),
+(0.068444064522636891, u&#39;reach&#39;),
+(0.057170204108103105, u&#39;run&#39;),
+(0.054732038737147118, u&#39;trains&#39;),
+(0.054298622740944123, u&#39;contract&#39;),
+(0.046550628739041838, u&#39;unions&#39;),
+(0.041191568872948219, u&#39;deal&#39;),
+(0.040003874892020903, u&#39;abc7newsbayarea&#39;),
+(0.030594570247699304, u&#39;agreement&#39;),
+(0.025459332467351173, u&#39;announcement&#39;)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By flipping the matrix, it is trivial to repeat the analysis for words.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/pca_words.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;That is encouraging as most distinct words seem to be coming from the end of the strike. On the other hand, it is hard to tell if there are any further interesting subgroups.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_3&#34;&gt;Dendrogram&lt;/h3&gt;
+
+&lt;p&gt;So far I&amp;rsquo;ve used the probability weights of each word in each topic. This topic x word matrix can be transformed into a topic by topic distance (correlation) matrix to do some additional data transformations. One is clustering. Hierarchical clustering is one such technique and easily plottable as a dendrogram.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/corr.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The results look similar to PCA except it is easier to see the hierarchical ordering of the topics. PCA on the other hand can use any number of dimensions to see in which direction the vectors are different.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_4&#34;&gt;Force-directed graph&lt;/h3&gt;
+
+&lt;p&gt;Using the same distance matrix, a force-directed graph can also be plotted. This basically plots the points spaced out in a certain way such that the farther the distance between two topics, the weaker the edge. I found this method to be sensitive to assumptions and it doesn&amp;rsquo;t help that I don&amp;rsquo;t really understand how the spacing works.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/network.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_5&#34;&gt;&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;So that&amp;rsquo;s it. Four different ways to visualize topic modeling clusters. They may not be so useless after all, just that the uncertainty needs to be tamed.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>SMOTE Algorithm to Classify Imbalanced Datasets with Random Forests</title>
-      <link>http://localhost:1313/posts/imbalanced-datasets-random-forests</link>
+      <link>http://tokestermw.github.io/posts/imbalanced-datasets-random-forests</link>
       <pubDate>Tue, 29 Jul 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/posts/imbalanced-datasets-random-forests</guid>
+      <guid>http://tokestermw.github.io/posts/imbalanced-datasets-random-forests</guid>
       <description>
 
 &lt;p&gt;Imbalanced datasets occur often in real-life classification problems. In credit card fraud detection, fraud may occur less than .01% of all transactions. The usual maximum likelihood or risk minimization methods put equal weight to each data point; thus, the estimation problem is overwhelmed by the majority class.&lt;/p&gt;
@@ -79,7 +206,7 @@ clf_fit = clf.fit(x, y, sample_weight = balance_weights(y))
 
 &lt;p&gt;So I ran a test using a random forests classifier on made up data. I generated imbalanced binary data where the ratio is 99:1. I calculated the ROC curve of the results for 1) just using weights to adjust the imbalanced, and 2) using the SMOTE algorithm.&lt;/p&gt;
 
-&lt;p&gt;Full code in a &lt;a href=&#34;https://gist.github.com/tokestermw/487971ee8b297f5749d1&#34;&gt;Gist&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- Full code in a [Gist](https://gist.github.com/tokestermw/487971ee8b297f5749d1). --&gt;
 
 &lt;p&gt;&lt;img src=&#34;../../images/ROC_two.png&#34; alt=&#34;bla&#34; /&gt;
 &lt;/p&gt;
@@ -87,79 +214,15 @@ clf_fit = clf.fit(x, y, sample_weight = balance_weights(y))
 &lt;p&gt;The red line shows the ROC curve for the SMOTE algorithm and the blue line for the weights method. I plotted the thresholds of classification as well. In general, the SMOTE method pushed the ROC curve to the upper left (better, but not by much). The bigger change comes from the thresholds. If we assume a canonical threshold of 0.5, the improvement to recall is about 0.22. We don&amp;rsquo;t want to rely on a tiny threshold since they are inconsistent.&lt;/p&gt;
 
 &lt;p&gt;There are of course trade-offs to this method. The more similar you make the resamples to the original dataset, the harder it is to predict new rare cases outside of he dataset.&lt;/p&gt;
-
-&lt;h3 id=&#34;toc_4&#34;&gt;The code for the SMOTE algorithm.&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;quot;&amp;quot;&amp;quot;
-SMOTE: Synthetic Minority Over-sampling Technique
-Chawla, Bowyer, Hall, Kegelmeyer
-Journal of Artificial Intelligence Research 16 (2002) 321-357
-
-https://www.jair.org/media/953/live-953-2037-jair.pdf
-&amp;quot;&amp;quot;&amp;quot;
-
-import warnings
-import random
-
-import numpy as np
-from sklearn.neighbors import NearestNeighbors
-
-def smote(T, N, K):
-    &amp;quot;&amp;quot;&amp;quot;
-    T ~ an array-like object representing the minority matrix
-    N ~ the percent oversampling you want. e.g. 500 will give you 5 samples
-    from the SMOTE algorithm (thus, has to be multiple of 100).
-    K ~ K Nearest Neighbors
-    &amp;quot;&amp;quot;&amp;quot;
-
-    ## make sure T is an array with the proper dimensions
-    T = np.asarray(T, dtype = np.float)
-    nsamples = T.shape[0]
-    nfeatures = T.shape[1]
-    if nsamples &amp;lt; nfeatures:
-        warnings.warn(&amp;quot;Make sure the features are in the columns.&amp;quot;)
-
-    ## we want to oversample
-    if N &amp;lt; 100:
-        raise Exception(&amp;quot;N should be at least 100&amp;quot;)
-
-    N = int(N) / 100
-
-    nn = NearestNeighbors(K)
-
-    nn.fit(T)
-
-    synthetic = np.zeros([N * nsamples, nfeatures])
-
-    for sample in xrange(nsamples):
-        nn_minority = nn.kneighbors(T[sample], return_distance = False)[0]
-        N_next = N
-
-        newindex = 0
-        while N_next != 0:
-            k_chosen = random.randint(0, K - 1)
-            while nn_minority[k_chosen] == sample: # don&#39;t pick itself
-                k_chosen = random.randint(0, K - 1)                
-
-            for feature in xrange(nfeatures):
-                diff = T[nn_minority[k_chosen], feature] - T[sample, feature]
-                gap = random.uniform(0, 1)
-                synthetic[N*sample + newindex, feature] = T[sample, feature] + gap * diff
-
-            newindex += 1
-            N_next -= 1
-
-    return synthetic
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
     <item>
       <title>Naive Bayes Classifier on Epicurious Recipes using Julia</title>
-      <link>http://localhost:1313/posts/julia-naive-bayes</link>
+      <link>http://tokestermw.github.io/posts/julia-naive-bayes</link>
       <pubDate>Sat, 12 Jul 2014 07:00:36 UTC</pubDate>
       
-      <guid>http://localhost:1313/posts/julia-naive-bayes</guid>
+      <guid>http://tokestermw.github.io/posts/julia-naive-bayes</guid>
       <description>
 
 &lt;p&gt;This is adapted from an &lt;a href=&#34;https://github.com/JuliaLang/IJulia.jl&#34;&gt;IJulia&lt;/a&gt; Notebook. It runs a
@@ -525,11 +588,184 @@ correctly. Let&amp;rsquo;s see what it&amp;rsquo;s confused with.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Comparing Crowdsourced and Government Fukushima Radiation Data</title>
+      <link>http://tokestermw.github.io/posts/fukushima-data</link>
+      <pubDate>Thu, 21 Nov 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://tokestermw.github.io/posts/fukushima-data</guid>
+      <description>
+
+&lt;h2 id=&#34;toc_0&#34;&gt;Mapping the Difference between Crowdsourced and Government Data&lt;/h2&gt;
+
+&lt;p&gt;I decided it might be a good exercise to actually check between the two datasets. My main objective is to create an app that plots both data, interpolate the data for direct comparison and quantify the difference. Since the data are high resolution both in time and space, I thought it was best to let the user get a feel of what the difference were.&lt;/p&gt;
+
+&lt;p&gt;The government data is 23+ static points around Fukushima Daiichi with radiation measured every 10 minutes. The crowdsourced data is measured using sensors attached to volunteers&amp;rsquo; cars. Therefore, I did an interpolation on the government data but not the crowdsourced data for the comparison.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_1&#34;&gt;Interpolation Methods&lt;/h3&gt;
+
+&lt;p&gt;I used three different interpolation methods. I did this to reduce model error and to not get accused of cherry-picking models to fail to reject my null (H0: Government = Crowdsourced).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Inverse Distance Weighting&lt;/em&gt;: This is the simplest model. Farther off points are less related to the interpolated point than closer ones. I could have also used k-nearest neighbors but that was overkill for a basic model to compare against.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Radial Basis Network&lt;/em&gt;: RBNs are a type of neural network that takes radial activation functions (Gaussian in my case, I&amp;rsquo;ve also looked at splines) at each data point and and fits linear weights to get the interpolated point. Since I&amp;rsquo;m interpolating, the centers of the radial functions are known so back propagation is not needed. Linear weights are fit using the matrix inverse (&lt;a href=&#34;http://math.bu.edu/people/mkon/nnpap3.pdf&#34;&gt;ref&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ordinary Kriging&lt;/em&gt;: I can estimate the linear weights by minimizing the MSE. This breaks up into variance, covariance and semivariance so I fit the variogram, then run the interpolation. Since kriging assumes a normal random field, a confidence interval can be calculated. Looking ahead, ordinary kriging assumes the same mean for all points so universal kriging may be more apropos.&lt;/p&gt;
+
+&lt;p&gt;I fit and train them offline to make it ready for the interactive app.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_2&#34;&gt;Comparison&lt;/h3&gt;
+
+&lt;p&gt;The comparison between the two datasets is simple. I do a log on both datasets, and then for each point from the crowdsourced data, I run the interpolation on the government data for that location. I take a ratio of these points and plot them on a map.&lt;/p&gt;
+
+&lt;p&gt;To compare between the interpolation methods, I considered leave one out cross-validation MSEs, K-fold cross-validation with respect to latitude and ditto with longitude. I also considered interpolated points that are closer to the crowdsourced points as &amp;ldquo;better.&amp;rdquo; Generally, the kriging method performed the best.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_3&#34;&gt;Map App&lt;/h3&gt;
+
+&lt;p&gt;The app (&lt;a href=&#34;http://54.200.81.28:5000/&#34;&gt;here&lt;/a&gt;[link broken]) allows users to play with the data and its comparisons. The user can choose the date, choose the model, choose the CPM-to-µSv/hr conversion rate and choose the &amp;ldquo;percentage difference.&amp;rdquo; The conversion rate &lt;a href=&#34;http://blog.safecast.org/2011/06/volunteer-report-safecasting-miyagi-by-rob-kneller/&#34;&gt;defaults to 300&lt;/a&gt; so 300 CPM is equivalent to 1µSv/hr. The &amp;ldquo;percentage difference&amp;rdquo; just lets you choose how far apart the two values need to be to consider it significant. So choosing 10% means that if the citizen data is within +/-10% of the government data, the marker on the map is set to &lt;font color=&#34;green&#34;&gt;green&lt;/font&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here is a sample output from 09-24-2011 (kriging, 300, 10%):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../..//images/ok.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The &lt;font color=&#34;red&#34;&gt;red markers&lt;/font&gt; are when the government data is bigger than the crowdsourced data, the &lt;font color=&#34;blue&#34;&gt;blue markers&lt;/font&gt; are when the crowdsourced data is bigger and the &lt;font color=&#34;green&#34;&gt;green markers&lt;/font&gt; shows anything between +/-10% of each other.&lt;/p&gt;
+
+&lt;p&gt;So the results look pretty good. You can check for other dates but the kriging method approximates the crowdsourced data pretty well. The data diverge most around the epicenter of where the meltdown was. This isn&amp;rsquo;t too surprising since it&amp;rsquo;s where the radiation is the highest and most variable. For this date, the median ratio between crowdsourced and government data was ~98%.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_4&#34;&gt;Unit Conversion&lt;/h3&gt;
+
+&lt;p&gt;A very important detail is the unit conversion rate. I defaulted to 300, but since it&amp;rsquo;s measuring different things (electron count vs. radiation exposure), there is no perfect conversion. The conversion may be different depending on sensor, location, wind etc. So below is a plot of median crowdsourced to government ratio for different conversion rates:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/conversion_profile.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;At least for 09-24-2013, the optimal conversion rate is 270. Whether that is the best conversion it&amp;rsquo;s not possible to know given this data.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_5&#34;&gt;No clear difference&lt;/h3&gt;
+
+&lt;p&gt;For this set of data, I found no telling difference. Interpolation does not work well outside the interpolated points by definition and the results become more unstable as you get closer to the epicenter. All in all, it&amp;rsquo;s good to have multiple datasets as checks on the system&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_6&#34;&gt;Links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.sendung.de/japan-radiation-open-data/&#34;&gt;Link to Government Data&lt;/a&gt;, &lt;a href=&#34;http://blog.safecast.org/&#34;&gt;Link to Crowdsourced Data&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/tokestermw/fukushima-nuclear-radiation&#34;&gt;GitHub Repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://54.200.81.28:5000/&#34;&gt;App&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Statistical Shrinkage and Election Polling</title>
+      <link>http://tokestermw.github.io/posts/shrinkage-public-polling</link>
+      <pubDate>Sat, 26 Oct 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://tokestermw.github.io/posts/shrinkage-public-polling</guid>
+      <description>
+
+&lt;p&gt;We saw in 2012 that this type of meta-analysis estimate can be done by anyone who is trained in advanced statistics. &lt;a href=&#34;http://votamatic.org/about-me/&#34;&gt;Drew Linzer&lt;/a&gt;, &lt;a href=&#34;http://election.princeton.edu/&#34;&gt;Sam Wang&lt;/a&gt; and &lt;a href=&#34;http://jackman.stanford.edu/blog/&#34;&gt;Simon Jackman&lt;/a&gt; all had their models predict the election outcome very accurately. All models essentially have the same underlying state polling data and some kind of averaging methodology for the overall voter preference.&lt;/p&gt;
+
+&lt;p&gt;The averaging logic comes from the &lt;a href=&#34;http://en.wikipedia.org/wiki/James%E2%80%93Stein_estimator&#34;&gt;James-Stein estimator&lt;/a&gt;. The James-Stein estimator basically says that the maximum likelihood estimate performs better on average when combined with the overall average. In other words, if the MLE shares information, or &amp;ldquo;shrunk&amp;rdquo; to the overall average, we get a more reliable estimate. The James-Stein estimator is just the weighted average of the MLE and the overall average.&lt;/p&gt;
+
+&lt;p&gt;$$ \hat{y} = \bar{y} + C (\hat{y}_{MLE} - \bar{y} ) $$&lt;/p&gt;
+
+&lt;p&gt;This logic can be extended to hierarchical models and Bayesian models where several probability distributions are combined. In the political polling context, we can greatly increase the sample size and precision without sacrificing too much bias.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_0&#34;&gt;Hierarchical Forward Random Walk Model for the 2012 Presidential Election&lt;/h2&gt;
+
+&lt;p&gt;I decided to explore shrinkage using data from the last election. I ran &lt;a href=&#34;http://www.tandfonline.com/doi/abs/10.1080/10361140500302472#preview&#34;&gt;Simon Jackman&amp;rsquo;s hierarchical model&lt;/a&gt; on &lt;a href=&#34;http://elections.huffingtonpost.com/pollster/2012-general-election-romney-vs-obama&#34;&gt;national polling
+data&lt;/a&gt;. To simplify, I aggregated the data into weeks (instead of days) and looked at hierarchical only at the pollster level. The other folks mentioned above who were doing meta-analysis are more careful with their analysis by including informative priors, running their models on state polling data, constructing a more sophisticated time series model, etc. The statistic of interest is the proportion of Obama support relative to Romney support. The model predicting anything above 50% suggests an Obama win.&lt;/p&gt;
+
+&lt;p&gt;The model is simple. I fit a Binomial,&lt;/p&gt;
+
+&lt;p&gt;$$y_i \sim \text{Binomial}(p_i, N_i)$$&lt;/p&gt;
+
+&lt;p&gt;the expected value is split into a daily component and a pollster-level component,&lt;/p&gt;
+
+&lt;p&gt;$$\text{logit}(p_i) = \alpha_{t_i} + \delta_{j_i}$$&lt;/p&gt;
+
+&lt;p&gt;the daily component is filtered with a random walk model,&lt;/p&gt;
+
+&lt;p&gt;$$\alpha_t \sim N(\alpha_{t-1}, \sigma^2_\alpha)$$&lt;/p&gt;
+
+&lt;p&gt;where the spread of pollster effects are normal,&lt;/p&gt;
+
+&lt;p&gt;$$\delta_j \sim N(0,\sigma^2_\delta)$$&lt;/p&gt;
+
+&lt;p&gt;and it is assumed that the overall pollster effect evens out.&lt;/p&gt;
+
+&lt;p&gt;$$\delta_1 = 0 - \sum^J_{j=2} \delta_j$$&lt;/p&gt;
+
+&lt;p&gt;The model is fit with &lt;a href=&#34;http://mcmc-jags.sourceforge.net/&#34;&gt;JAGS&lt;/a&gt;. The model isn&amp;rsquo;t very dynamic in the sense that it doesn&amp;rsquo;t adjust for the end of the election cycle polling rush. But it does predict the right candidate. The fit of the model is shown below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/model-average.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The pollster effect can be quantified and is shown below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/house-bias.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Since the election is over, the more interesting part is the shrinkage. I calculated the James-Stein estimator for all $p_i$ and compared it against the original polling data. Even with the drift over time, we see shrinkage towards the final number.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/shrinkage.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I decided to focus on the biggest pollsters. The biggest pollsters are the ones that get cited by media. Below I plotted on the left, all the results from YouGov and Rasmussen along with the simple average of all the polls during that week (black line). On the right hand side I put the final poll and its sampling error, compared with the hierarchical model estimate.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/pooled-estimate.png&#34; alt=&#34;bla&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The JAGS code:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;model
+
+## Pooling the Polls Over an Election Campaign
+## SIMON JACKMAN
+
+{
+  ## random walk
+  for (t in 2:T) {
+    alpha[t] ~ dnorm(alpha[t-1], tau_alpha)
+  }
+
+  ## not a time series, fit to polling data
+  for (i in 1:I) {
+    logit(p[i]) &amp;lt;- alpha[id.t[i]] + delta[id.j[i]]
+    y[i] ~ dbin(p[i], N[i])
+  }
+
+  ## sum to zero constraint
+  delta[1] &amp;lt;- 0 - sum(delta[2:J])
+
+  ## priors
+  alpha[1] ~ dnorm(0, .1)
+  for (j in 2:J) {
+    delta[j] ~ dnorm(0, tau_delta)
+  }
+
+  sigma_delta ~ dunif(0, 100)
+  tau_delta &amp;lt;- 1 / pow(sigma_delta, 2)
+
+  sigma_alpha ~ dunif(0, 100)
+  tau_alpha &amp;lt;- 1 / pow(sigma_alpha, 2)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Refs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Simon Jackman, Pooling the Polls Over an Election Campaign. Australian Journal of Political Science, December 2005, Vol 40, No. 4, pp. 499-517.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>D3 and jstat to visualize statistics</title>
-      <link>http://localhost:1313/posts/d3-with-jstat</link>
+      <link>http://tokestermw.github.io/posts/d3-with-jstat</link>
       <pubDate>Sat, 21 Sep 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/posts/d3-with-jstat</guid>
+      <guid>http://tokestermw.github.io/posts/d3-with-jstat</guid>
       <description>&lt;p&gt;R does plotting statistics well, D3.js does plotting web-friendly interactive plots well. So I decided to weave &lt;a href=&#34;http://www.jstat.org/&#34;&gt;jstat&lt;/a&gt; (a Javascript stats library) into D3 to plot R-like objects. One of the things people during data analysis is to plot theoretical distributions to check it against the data. In jstat, you can easily do this by using the normal pdf function.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;var range = jStat(jStat.seq(-5,5,100));

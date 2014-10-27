@@ -2,23 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2014-07-29T00:00:00+00:00</lastmod>
+    <loc>http://tokestermw.github.io/</loc>
+    <lastmod>2014-10-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/posts/imbalanced-datasets-random-forests</loc>
+    <loc>http://tokestermw.github.io/posts/topicmodel-viz</loc>
+    <lastmod>2014-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tokestermw.github.io/posts/imbalanced-datasets-random-forests</loc>
     <lastmod>2014-07-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/posts/julia-naive-bayes</loc>
+    <loc>http://tokestermw.github.io/posts/julia-naive-bayes</loc>
     <lastmod>2014-07-12T07:00:36+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/posts/d3-with-jstat</loc>
+    <loc>http://tokestermw.github.io/posts/fukushima-data</loc>
+    <lastmod>2013-11-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tokestermw.github.io/posts/shrinkage-public-polling</loc>
+    <lastmod>2013-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tokestermw.github.io/posts/d3-with-jstat</loc>
     <lastmod>2013-09-21T00:00:00+00:00</lastmod>
   </url>
   

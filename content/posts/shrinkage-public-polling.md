@@ -2,26 +2,15 @@
 title = "Statistical Shrinkage and Election Polling"
 date = "2013-10-26"
 tags = ["shrinkage", "politics", "r", "jags"]
-draft = true
 +++
 
-<!-- <style>
-img[alt=bla] {width: 400px;}
-</style> -->
-
-The 2012 U.S. Presidential Election is long past over but not before Nate Silver basically [revolutionized](http://deadspin.com/espns-nate-silver-is-here-to-answer-your-questions-951328525) political reporting. Political reporting defaults to laying blame on both major parties equally to the 18th significant figure. This is analogous to setting an uninformative (maximum entropy) prior to your model each time you do a story. I think this quote sums up the skepticism of reporters and talk show hosts have towards data-based reporting:
-
-> Nate Silver says this is a 73.6 percent chance that the president is going to win? ... anybody that thinks that this race is anything but a tossup right now is such an ideologue, they should be kept away from typewriters, computers, laptops and microphones for the next 10 days, because they’re jokes.<cite>[Joe Scarborough](http://www.politico.com/blogs/media/2012/10/nate-silver-romney-clearly-could-still-win-147618.html)</cite>
-
-Nate Silver includes his model results as an an integral component of political reporting. If every outlet does something similar to their election coverage (and they are starting to), it would have the effect of anchoring voter preferences (no more poll chasing) and providing a non-partisan, evidenced view of the current state of the race (no more "race is tight so watch our show!").
-
-We saw in 2012 that this type of meta-analysis estimate can be done by anyone who is trained in somewhat advanced statistics. [Drew Linzer](http://votamatic.org/about-me/), [Sam Wang](http://election.princeton.edu/) and [Simon Jackman](http://jackman.stanford.edu/blog/) all had their models predict the election outcome very accurately. All models essentially have the same underlying state polling data and some kind of averaging methodology for the overall voter preference.
+We saw in 2012 that this type of meta-analysis estimate can be done by anyone who is trained in advanced statistics. [Drew Linzer](http://votamatic.org/about-me/), [Sam Wang](http://election.princeton.edu/) and [Simon Jackman](http://jackman.stanford.edu/blog/) all had their models predict the election outcome very accurately. All models essentially have the same underlying state polling data and some kind of averaging methodology for the overall voter preference.
 
 The averaging logic comes from the [James-Stein estimator](http://en.wikipedia.org/wiki/James%E2%80%93Stein_estimator). The James-Stein estimator basically says that the maximum likelihood estimate performs better on average when combined with the overall average. In other words, if the MLE shares information, or "shrunk" to the overall average, we get a more reliable estimate. The James-Stein estimator is just the weighted average of the MLE and the overall average.
 
 $$ \hat{y} = \bar{y} + C (\hat{y}_{MLE} - \bar{y} ) $$
 
-This logic can be extended to hierarchical models and Bayesian models where several probability distributions are combined. In the political polling context, we can greatly increase the sample size and precision without sacrificing too much bias (assuming that there are not any substantial systematic biases).
+This logic can be extended to hierarchical models and Bayesian models where several probability distributions are combined. In the political polling context, we can greatly increase the sample size and precision without sacrificing too much bias.
 
 ## Hierarchical Forward Random Walk Model for the 2012 Presidential Election
 
@@ -63,10 +52,6 @@ Since the election is over, the more interesting part is the shrinkage. I calcul
 I decided to focus on the biggest pollsters. The biggest pollsters are the ones that get cited by media. Below I plotted on the left, all the results from YouGov and Rasmussen along with the simple average of all the polls during that week (black line). On the right hand side I put the final poll and its sampling error, compared with the hierarchical model estimate.
 
 ![bla](../../images/pooled-estimate.png)
-
-You can see how tenuous it is to rely on one pollster, much less one poll to narrate voter support. Even the simple average is fairly noisy and "riggable" by prolific pollsters. CNN is funnily even-handed. You see that the hierarchical Bayesian model performs well and much more even-handed (in the scientific sense).
-
-I would also like to note that it is actually fairly easy to construct an accurate model at least for the national election. The data is simple to use and copious. Pollsters generally do a good job of sampling voter preferences except for a few notables (Gallup). Any kind of averaging algorithm can get pretty close so competition to construct the best model will only get more fierce. I suspect Nate Silver is changing employers because of this very reason ;)
 
 **The JAGS code:**
 

@@ -1,19 +1,12 @@
 +++
-title = "Government Nuclear Radiation Data is Validated by Crowdsourced Data from Fukushima Daiichi"
+title = "Comparing Crowdsourced and Government Fukushima Radiation Data"
 date = "2013-11-21"
 tags = ["python", "javascript", "flask"]
-draft = true
 +++
-
-Nuclear radiation still connotes fear and anxiety ([Holy Fukushima Batman](http://jeromiewilliams.com/2013/04/12/holy-fukushima-radiation-from-japan-is-already-killing-north-americans/)).
-
-![bla](http://ernestlmartin.com/images/get-attachment.aspx.jpg)
-
-Since the Fukushima earthquake and subsequent nuclear meltdown, people are still concerned if it is safe to return or eat the food that is sourced from the affected area. [The Japanese Nuclear Regulation Authority actually monitors and publishes radiation data](http://www.bousai.ne.jp/eng/index.html) since it's required to check up on the area surrounding every nuclear power plant. A crowdsourced radiation monitoring project, [Safecast](http://blog.safecast.org/), started collecting data in 2011 to give [a check](http://qz.com/121562/monitoring-the-spreading-radiation-from-fukushima-in-real-time/) on the fidelity of government data.
 
 ## Mapping the Difference between Crowdsourced and Government Data
 
-So I decided it might be a good exercise to actually check between the two datasets. My main objective is to create an app that plots both data, interpolate the data for direct comparison and quantify the difference. Since the data are high resolution both in time and space, I thought it was best to let the user get a feel of what the difference were.
+I decided it might be a good exercise to actually check between the two datasets. My main objective is to create an app that plots both data, interpolate the data for direct comparison and quantify the difference. Since the data are high resolution both in time and space, I thought it was best to let the user get a feel of what the difference were.
 
 The government data is 23+ static points around Fukushima Daiichi with radiation measured every 10 minutes. The crowdsourced data is measured using sensors attached to volunteers' cars. Therefore, I did an interpolation on the government data but not the crowdsourced data for the comparison.
 
@@ -55,9 +48,9 @@ A very important detail is the unit conversion rate. I defaulted to 300, but sin
 
 At least for 09-24-2013, the optimal conversion rate is 270. Whether that is the best conversion it's not possible to know given this data.
 
-### No obvious difference
+### No clear difference
 
-In my case, for this set of data, I found no telling difference. However, interpolation does not work well outside the interpolated points and it becomes more unstable as you get closer to the epicenter. All in all, it's good to have multiple datasets as checks on the system
+For this set of data, I found no telling difference. Interpolation does not work well outside the interpolated points by definition and the results become more unstable as you get closer to the epicenter. All in all, it's good to have multiple datasets as checks on the system
 
 ## Links
 
