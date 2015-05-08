@@ -4,8 +4,6 @@ date = "2014-10-26"
 tags = ["python", "topic modeling", "networkx", "gensim"]
 +++
 
-<blockquote class="twitter-tweet" lang="en"><p>Lies, damned lies and topic modeling.</p>&mdash; Motoki Wu (@plusepsilon) <a href="https://twitter.com/plusepsilon/status/526464306754240513">October 26, 2014</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 There is still much work to do in interpreting and visualizing topic model word clusters so some tangible results can be derived in a research setting or something useful comes out in a production app. A cluster of words are likely to be noisy and illegible so I will be exploring a few options presented [here](http://tedunderwood.com/2012/11/11/visualizing-topic-models/) by [@Ted_Underwood](https://twitter.com/Ted_Underwood).
  
 I took some Twitter data from [last year's BART strike](http://oaklandwiki.org/2013_BART_Strikes?&redirected_from=july%201st%202013%20strike) used in a previous [IPython notebook](http://nbviewer.ipython.org/github/tokestermw/twitter-bart/blob/master/ipynb/Twitter140-checkNB.ipynb). This data contains the following chain of events:

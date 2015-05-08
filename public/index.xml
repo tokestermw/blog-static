@@ -3,7 +3,7 @@
   <channel>
       <title>Recent Content on Motoki Wu </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://tokestermw.github.io/index.xml</link>
+    <link>http://localhost:1313/index.xml</link>
     <language>en-us</language>
     
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>Applying GloVe Vectors using gensim word2vec</title>
-      <link>http://tokestermw.github.io/posts/glove-vectors-gensim</link>
+      <link>http://localhost:1313/posts/glove-vectors-gensim</link>
       <pubDate>Mon, 04 May 2015 07:00:00 UTC</pubDate>
       
-      <guid>http://tokestermw.github.io/posts/glove-vectors-gensim</guid>
+      <guid>http://localhost:1313/posts/glove-vectors-gensim</guid>
       <description>
 
 &lt;p&gt;The word2vec algorithm is &lt;a href=&#34;http://www.wise.io/tech/five-takeaways-on-the-state-of-natural-language-processing&#34;&gt;taking the NLP world by storm&lt;/a&gt; as a relatively simple way of running &lt;a href=&#34;https://twitter.com/search?q=%23deeplearning&#34;&gt;#deeplearning&lt;/a&gt;. People are looking for efficient ways of adding context to words in an effort to reduce manual labor (a.k.a. featurization). &lt;a href=&#34;http://insightdatascience.com/blog/thisplusthat_a_search_engine_that_lets_you_add_words_as_vectors.html&#34;&gt;word2vec&lt;/a&gt; is an unsupervised algorithm but acts like a supervised algorithm that learns on itself. It is essentially a set of logistic regressions that tries to predict a word given the surrounding words as features (or vice-versa).&lt;/p&gt;
@@ -102,13 +102,11 @@ print find_nearest(vector)
     
     <item>
       <title>Visualization of Topic Models</title>
-      <link>http://tokestermw.github.io/posts/topicmodel-viz</link>
+      <link>http://localhost:1313/posts/topicmodel-viz</link>
       <pubDate>Sun, 26 Oct 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://tokestermw.github.io/posts/topicmodel-viz</guid>
+      <guid>http://localhost:1313/posts/topicmodel-viz</guid>
       <description>
-
-&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;Lies, damned lies and topic modeling.&lt;/p&gt;&amp;mdash; Motoki Wu (@plusepsilon) &lt;a href=&#34;https://twitter.com/plusepsilon/status/526464306754240513&#34;&gt;October 26, 2014&lt;/a&gt;&lt;/blockquote&gt; &lt;/p&gt;
 
 &lt;p&gt;There is still much work to do in interpreting and visualizing topic model word clusters so some tangible results can be derived in a research setting or something useful comes out in a production app. A cluster of words are likely to be noisy and illegible so I will be exploring a few options presented &lt;a href=&#34;http://tedunderwood.com/2012/11/11/visualizing-topic-models/&#34;&gt;here&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/Ted_Underwood&#34;&gt;@Ted_Underwood&lt;/a&gt;.&lt;/p&gt;
 
@@ -229,10 +227,10 @@ Out[233]:
     
     <item>
       <title>SMOTE Algorithm to Classify Imbalanced Datasets with Random Forests</title>
-      <link>http://tokestermw.github.io/posts/imbalanced-datasets-random-forests</link>
+      <link>http://localhost:1313/posts/imbalanced-datasets-random-forests</link>
       <pubDate>Tue, 29 Jul 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://tokestermw.github.io/posts/imbalanced-datasets-random-forests</guid>
+      <guid>http://localhost:1313/posts/imbalanced-datasets-random-forests</guid>
       <description>
 
 &lt;p&gt;Imbalanced datasets occur often in real-life classification problems. In credit card fraud detection, fraud may occur less than .01% of all transactions. The usual maximum likelihood or risk minimization methods put equal weight to each data point; thus, the estimation problem is overwhelmed by the majority class.&lt;/p&gt;
@@ -310,10 +308,10 @@ clf_fit = clf.fit(x, y, sample_weight = balance_weights(y))
     
     <item>
       <title>Naive Bayes Classifier on Epicurious Recipes using Julia</title>
-      <link>http://tokestermw.github.io/posts/julia-naive-bayes</link>
+      <link>http://localhost:1313/posts/julia-naive-bayes</link>
       <pubDate>Sat, 12 Jul 2014 07:00:36 UTC</pubDate>
       
-      <guid>http://tokestermw.github.io/posts/julia-naive-bayes</guid>
+      <guid>http://localhost:1313/posts/julia-naive-bayes</guid>
       <description>
 
 &lt;p&gt;This is adapted from an &lt;a href=&#34;https://github.com/JuliaLang/IJulia.jl&#34;&gt;IJulia&lt;/a&gt; Notebook. It runs a
@@ -680,10 +678,10 @@ correctly. Let&amp;rsquo;s see what it&amp;rsquo;s confused with.&lt;/p&gt;
     
     <item>
       <title>Comparing Crowdsourced and Government Fukushima Radiation Data</title>
-      <link>http://tokestermw.github.io/posts/fukushima-data</link>
+      <link>http://localhost:1313/posts/fukushima-data</link>
       <pubDate>Thu, 21 Nov 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://tokestermw.github.io/posts/fukushima-data</guid>
+      <guid>http://localhost:1313/posts/fukushima-data</guid>
       <description>
 
 &lt;h2 id=&#34;toc_0&#34;&gt;Mapping the Difference between Crowdsourced and Government Data&lt;/h2&gt;
@@ -748,10 +746,10 @@ correctly. Let&amp;rsquo;s see what it&amp;rsquo;s confused with.&lt;/p&gt;
     
     <item>
       <title>Statistical Shrinkage and Election Polling</title>
-      <link>http://tokestermw.github.io/posts/shrinkage-public-polling</link>
+      <link>http://localhost:1313/posts/shrinkage-public-polling</link>
       <pubDate>Sat, 26 Oct 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://tokestermw.github.io/posts/shrinkage-public-polling</guid>
+      <guid>http://localhost:1313/posts/shrinkage-public-polling</guid>
       <description>
 
 &lt;p&gt;We saw in 2012 that this type of meta-analysis estimate can be done by anyone who is trained in advanced statistics. &lt;a href=&#34;http://votamatic.org/about-me/&#34;&gt;Drew Linzer&lt;/a&gt;, &lt;a href=&#34;http://election.princeton.edu/&#34;&gt;Sam Wang&lt;/a&gt; and &lt;a href=&#34;http://jackman.stanford.edu/blog/&#34;&gt;Simon Jackman&lt;/a&gt; all had their models predict the election outcome very accurately. All models essentially have the same underlying state polling data and some kind of averaging methodology for the overall voter preference.&lt;/p&gt;
@@ -853,10 +851,10 @@ data&lt;/a&gt;. To simplify, I aggregated the data into weeks (instead of days) 
     
     <item>
       <title>D3 and jstat to visualize statistics</title>
-      <link>http://tokestermw.github.io/posts/d3-with-jstat</link>
+      <link>http://localhost:1313/posts/d3-with-jstat</link>
       <pubDate>Sat, 21 Sep 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://tokestermw.github.io/posts/d3-with-jstat</guid>
+      <guid>http://localhost:1313/posts/d3-with-jstat</guid>
       <description>&lt;p&gt;R does plotting statistics well, D3.js does plotting web-friendly interactive plots well. So I decided to weave &lt;a href=&#34;http://www.jstat.org/&#34;&gt;jstat&lt;/a&gt; (a Javascript stats library) into D3 to plot R-like objects. One of the things people during data analysis is to plot theoretical distributions to check it against the data. In jstat, you can easily do this by using the normal pdf function.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;var range = jStat(jStat.seq(-5,5,100));

@@ -4,7 +4,7 @@
 *.rtf
 sessions/
 content/drafts/
-pelican-themes/
+#pelican-themes/
 src/
 *~
 public/
