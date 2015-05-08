@@ -1,0 +1,3 @@
+[submodule "plugins/ipythonnb"]
+	path = plugins/ipythonnb
+	url = git://github.com/danielfrg/pelican-ipythonnb.git

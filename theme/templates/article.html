@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}
+{{ SITENAME }} | {{ article.title }}
+{% endblock %}
+
+{% block head %}
+<!-- {% if article.ipython %} -->
+
+<!-- {% endif %} -->
+{% endblock %}
+
+{% block content %}
+<div id="content">
+    <div class="header">
+        <h1><a href="../{{ article.url }}">{{ article.title }}</a></h1>
+    </div>
+		
+	<span class="margin">
+		{{ AUTHOR }} (<script>mail2("tokestermw", "gmail", 0, "", "email")</script>)<br />
+		<!-- <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread">Comments</a>-->
+		<a href="https://twitter.com/plusepsilon">@plusepsilon</a><br />
+		<span>{{ article.locale_date }}</span><br />
+		<span class="tags">{% if article.tags %}
+			{% for tag in article.tags %}
+			<a href="{{ SITEURL }}/tag/{{ tag|replace(' ', '-') }}.html">&#35;{{ tag }}</a>
+			{% if not loop.last %}, 
+			{% endif %}{% endfor %}{% endif %}
+			</span></span>
+        <div class="entry-content"><div class="pbody">
+	
+        {{ article.content }}
+
+		<br />
+		
+		{% if DISQUS_SITENAME %}
+	
+		{% include 'disqus_comments.html' %}
+	
+		{% endif %}
+	
+        </div>
+        </div><!-- /.entry-content -->
+ 
+</div>
+{% endblock %}
+
+{% block endbody %}
+{% include 'mathjax.html' %}
+{% endblock %}

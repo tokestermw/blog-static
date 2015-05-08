@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block windowtitle %}
+{{ SITENAME }} | Tags
+{% endblock %}
+
+
+{% block title %}Tags{%endblock%}
+{% block menu_entry_tag %}
+class="active"
+{% endblock %}
+{% block content %}
+<div class="pbody">
+	
+<!-- http://stackoverflow.com/questions/10692276/d3-js-tag-cloud-size-from-a-json-array -->
+
+<h1>Tags</h1>
+
+<span class="margin">
+<ul>
+	{% for tag, articles in tags|sort(reverse=True) %}
+	<li><a href="{{ SITEURL }}/tag/{{ tag|replace(' ', '-') }}.html">{{ tag }}</a> ({{ articles|count }})</li>
+	{% endfor %}
+</ul>
+</span>
+
+<div id="d3">
+
+</div>
+
+<script type="text/javascript" src="{{ SITEURL }}/theme/js/d3/d3.v3.min.js"></script>	
+<script type="text/javascript" src="{{ SITEURL}}/theme/js/d3/d3.layout.cloud.js"></script>
+
+<script>
+	  var fill = d3.scale.category20();
+
+	  var jwords = [{% for tag, articles in tags %}"{{ tag }}", {% endfor %}""];
+	  var jcounts = [{% for tag, articles in tags %}{{ articles|count }},{% endfor %} 0];
+
+	  d3.layout.cloud().size([800, 500])
+	      .words(d3.zip(jwords, jcounts).map(function(d) {
+	        return {text: d[0], size: +d[1] * 20};
+	      }))
+	      .padding(5)
+	      .rotate(function() { return ~~(Math.random() * 2) * 90; })
+	      .font("Impact")
+	      .fontSize(function(d) { return d.size; })
+	      .on("end", draw)
+	      .start();
+
+	  function draw(words) {
+	    d3.select("#d3").append("svg")
+	        .attr("width", 800)
+	        .attr("height", 500)
+	      .append("g")
+	        .attr("transform", "translate(150,150)")
+	      .selectAll("text")
+	        .data(words)
+	      .enter().append("text")
+	        .style("font-size", function(d) { return d.size + "px"; })
+	        .style("font-family", "Impact")
+	        .style("fill", function(d, i) { return fill(i); })
+	        .attr("text-anchor", "middle")
+	        .attr("transform", function(d) {
+	          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+	        })
+	        .text(function(d) { return d.text; });
+	  }
+</script>
+
+
+	<!-- {% if tags %}
+	    {% for tag in tag_cloud %}
+	        <span class="tag-{{ tag.1 }}"><a href="{{ SITEURL }}/tag/{{tag.0|replace(' ', '-')}}.html">{{ tag.0 }}</a></span>
+	{{ count }}
+	    {% endfor %}
+	 -->
+
+	{% else %}
+		<p>Sorry, bisher gibt es keine Tags.</p>
+	{% endif %}
+	
+</div>
+{% endblock %}

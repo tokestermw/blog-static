@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="google-site-verification" content="CJ2gQSQr7BB_3G8N22YENwzlZLRvnWcfsXn64pZcwxI" />
+	<meta charset="utf-8">
+	<title>{% block windowtitle %}{{ SITENAME }} | {{ AUTHOR }}{% endblock %}</title>
+	<meta name="description" content="">
+	<meta name="author" content="{{ AUTHOR }}">
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/tango.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/pygments.css" /> -->
+
+
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/styles.css" />
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/ipython.min.css" />
+
+	<script language="javascript" src="{{ SITEURL }}/theme/js/email.js"></script>
+	<!-- 
+	<script type="text/javascript" src="{{ SITEURL }}/theme/js/d3/d3.v3.min.js"></script>	
+	<script type="text/javascript" src="{{ SITEURL }}/theme/js/jstat-1.0.0.min.js"></script>
+	<script type="text/javascript" src="{{ SITEURL}}/theme/js/d3/d3.layout.cloud.js"></script>
+	 -->
+	{% block head %}
+	{% endblock %}
+	
+</head>
+
+  <body><div id="MathJax_Message" style="display: none;"></div>
+    <div class="wrapper">
+      <div class="precontent">
+        <div class="siteinfos">
+          <!-- <h1><a href="{{ SITEURL }}/index.html"><div class="thl">{{ SITENAME }}</div></a></h1> -->
+          <div class="nav">
+          <ul class="main-nav">
+            <li><a href="{{ SITEURL }}/about.html">About</a></li>
+            <li>|</li>
+            <li><a href="{{ SITEURL }}/index.html">Blog</a></li>	
+            <li>|</li>
+			<li><a href="{{ SITEURL }}/tags.html">Tag Cloud</a></li>
+			<li>|</li>
+          </ul>
+        </div>
+        </div>
+      </div>
+
+<section class="content">
+			{% block content %}{% endblock %}
+</section>
+      <div class="footer">
+		<!-- I got these buttons from https://github.com/aristath/elusive-iconfont -->
+		<div id="icons">
+
+		<!-- google plus -->
+		<a href="https://plus.google.com/104805673826709213835?rel=author" target="_blank"><img src="{{ SITEURL }}/static/images/icons/googleplus.svg" alt="Google Plus" /></a>
+		<!-- GitHub -->
+		<a href="https://github.com/tokestermw" target="_blank"><img src="{{ SITEURL }}/static/images/icons/github.svg" alt="GitHub" /></a>
+		<!-- LinkedIn -->
+		<a href="http://www.linkedin.com/pub/motoki-wu/64/b96/b11" target="_blank"><img src="{{ SITEURL }}/static/images/icons/linkedin.svg" alt="LinkedIn" /></a>
+		<!-- Twitter -->
+		<a href="https://twitter.com/plusepsilon" target="_blank"><img src="{{ SITEURL }}/static/images/icons/twitter.svg" alt="Twitter" /></a>
+		<!-- RSS -->
+		<a href="{{ SITEURL }}/feeds/all.rss.xml" target="_blank"><img src="{{ SITEURL }}/static/images/icons/rss.svg" alt="RSS" /></a>
+
+		</div>
+
+	
+	
+		  <p> Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>. </p>
+      </div>
+      
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  
+	{% block endbody %}
+{% endblock %}
+
+	{% if GOOGLE_ANALYTICS %}
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', '{{ GOOGLE_ANALYTICS }}', '{{ SITEURL }}');
+		  ga('send', 'pageview');
+
+		</script>
+	{% endif %}
+
+</body></html>
