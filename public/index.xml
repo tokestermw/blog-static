@@ -7,7 +7,98 @@
     <language>en-us</language>
     
     
-    <updated>Sun, 26 Oct 2014 00:00:00 UTC</updated>
+    <updated>Mon, 04 May 2015 07:00:00 UTC</updated>
+    
+    <item>
+      <title>Applying GloVe Vectors using gensim word2vec</title>
+      <link>http://tokestermw.github.io/posts/glove-vectors-gensim</link>
+      <pubDate>Mon, 04 May 2015 07:00:00 UTC</pubDate>
+      
+      <guid>http://tokestermw.github.io/posts/glove-vectors-gensim</guid>
+      <description>
+
+&lt;p&gt;The word2vec algorithm is &lt;a href=&#34;http://www.wise.io/tech/five-takeaways-on-the-state-of-natural-language-processing&#34;&gt;taking the NLP world by storm&lt;/a&gt; as a relatively simple way of running &lt;a href=&#34;https://twitter.com/search?q=%23deeplearning&#34;&gt;#deeplearning&lt;/a&gt;. People are looking for efficient ways of adding context to words in an effort to reduce manual labor (a.k.a. featurization). &lt;a href=&#34;http://insightdatascience.com/blog/thisplusthat_a_search_engine_that_lets_you_add_words_as_vectors.html&#34;&gt;word2vec&lt;/a&gt; is an unsupervised algorithm but acts like a supervised algorithm that learns on itself. It is essentially a set of logistic regressions that tries to predict a word given the surrounding words as features (or vice-versa).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://nlp.stanford.edu/projects/glove/&#34;&gt;GloVe&lt;/a&gt; is another algorithm that creates vector representations of words similar to word2vec. GloVe transforms the neutral network problem into a word co-occurrence matrix so it should be faster to train but uses more memory.&lt;/p&gt;
+
+&lt;p&gt;Like any NLP or classification task, the choice of corpus (and featurization) is paramount. Ideally, it would be great to have a large, but domain-relevant corpus. Thankfully, researchers at Stanford has provided us with large corpora of trained vectors. AFAIK the only downloadable vector corpus for Twitter is available from using GloVe.&lt;/p&gt;
+
+&lt;h3 id=&#34;toc_0&#34;&gt;Vectors in gensim&lt;/h3&gt;
+
+&lt;p&gt;The following will go through the steps to use &lt;a href=&#34;http://radimrehurek.com/2014/12/making-sense-of-word2vec/&#34;&gt;gensim&lt;/a&gt; to work with GloVe vectors and will use the 27 billion tokens 25 vector dimensions dataset. [1]&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href=&#34;http://www-nlp.stanford.edu/data/glove.twitter.27B.25d.txt.gz&#34;&gt;http://www-nlp.stanford.edu/data/glove.twitter.27B.25d.txt.gz&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To load the corpus into gensim, the first line of the text file has to be the number of tokens and number of vector dimensions. In this case, I use the output of &lt;code&gt;wc -l&lt;/code&gt; and 25. Interestingly, the above linked corpus only contains about 1+ million (most common?) tokens.&lt;/p&gt;
+
+&lt;p&gt;The next step is to simply load using gensim while being careful of tokens that are non-unicode.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from os.path import join
+import numpy as np
+import gensim
+word2vec = gensim.models.Word2Vec
+
+GLOVE_DIR = &amp;quot;/dir/to/here&amp;quot;
+
+def any2unicode(text, encoding=&#39;utf8&#39;, errors=&#39;strict&#39;):
+    &amp;quot;&amp;quot;&amp;quot;Convert a string (bytestring in `encoding` or unicode), to unicode.&amp;quot;&amp;quot;&amp;quot;
+    if isinstance(text, unicode):
+        return text
+    return unicode(text.replace(&#39;\xc2\x85&#39;, &#39;&amp;lt;newline&amp;gt;&#39;), encoding, errors=errors)
+#     return unicode(text, encoding, errors=errors)
+
+gensim.utils.to_unicode = any2unicode
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once loaded, the GloVe vectors act exactly the same as word2vec vectors. The vector understands &amp;lsquo;hurricane&amp;rsquo; is related to a natural disaster where &amp;lsquo;storm&amp;rsquo; is more of a weather event.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;model = word2vec.load_word2vec_format(join(GLOVE_DIR, &#39;glove.twitter.27B.25d.txt&#39;), binary=False)
+
+model.most_similar(&#39;hurricane&#39;)
+[(u&#39;storm&#39;, 0.8949791193008423),
+ (u&#39;cliff&#39;, 0.8744032979011536),
+ (u&#39;sandy&#39;, 0.8724367022514343),
+ (u&#39;wreck&#39;, 0.843888521194458),
+ (u&#39;aftermath&#39;, 0.8432317972183228),
+ (u&#39;tragedy&#39;, 0.8424368500709534),
+ (u&#39;disaster&#39;, 0.8382934927940369),
+ (u&#39;death&#39;, 0.8321377635002136),
+ (u&#39;hearing&#39;, 0.8270001411437988),
+ (u&#39;tornado&#39;, 0.8247590065002441)]
+
+model.most_similar(&#39;storm&#39;)
+[(u&#39;hurricane&#39;, 0.8949790596961975),
+ (u&#39;fire&#39;, 0.8879387974739075),
+ (u&#39;road&#39;, 0.884390652179718),
+ (u&#39;chaos&#39;, 0.8711612224578857),
+ (u&#39;peak&#39;, 0.8681640028953552),
+ (u&#39;ground&#39;, 0.865815281867981),
+ (u&#39;madness&#39;, 0.8620372414588928),
+ (u&#39;rain&#39;, 0.8585748672485352),
+ (u&#39;collapse&#39;, 0.8583846092224121),
+ (u&#39;snow&#39;, 0.857816219329834)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can even try the canonical &lt;strong&gt;&lt;em&gt;king - man + woman = queen&lt;/em&gt;&lt;/strong&gt; exercise. Results are not as clean (unless my calculations are wrong!).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def get_vector(word): 
+    return model.syn0norm[model.vocab[word].index]
+
+def find_nearest(vector, K=10):
+    idx = np.sum((np.square(model.syn0norm - vector)), axis=1).argsort()[:K]#.argmin()
+    return map(lambda x: model.index2word[x], idx)
+
+vector = get_vector(&#39;king&#39;) - get_vector(&#39;man&#39;) + get_vector(&#39;woman&#39;)
+
+print find_nearest(vector)
+[u&#39;meets&#39;, u&#39;woman&#39;, u&#39;king&#39;, u&#39;prince&#39;, u&#39;queen&#39;, u&#39;\u2019s&#39;, u&#39;crow&#39;, u&#39;hunter&#39;, u&#39;father&#39;, u&#39;soldier&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are many ways to improve performance: add vectors, add tokens, filter by language and filter out spam, having a more concentrated filter, add ngrams, etc. Or it may well be that Twitter doesn&amp;rsquo;t have a good semantic understanding of kings and queens.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gist.github.com/tokestermw/cb87a97113da12acb388&#34;&gt;gist:&lt;/a&gt; to preprocess the tweets in the same way as the GloVe authors in Python.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Visualization of Topic Models</title>
